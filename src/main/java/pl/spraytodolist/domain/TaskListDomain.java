@@ -1,4 +1,4 @@
-package pl.pl.spraytasklist.domain;
+package pl.spraytasklist.domain;
 
 import java.util.Date;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package pl.pl.spraytasklist.dao;
+package pl.spraytasklist.dao;
 
 import java.util.ArrayList;
 import java.util.List;
