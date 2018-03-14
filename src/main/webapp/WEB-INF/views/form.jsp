@@ -4,7 +4,7 @@
 
 <html>
     <body>
-        <form action="add" th:object="${ListForm}" method="post">
+        <form action="add" th:object="${TaskListModel}" method="post">
             <table>
                 <tr>
                     <td>description:</td>

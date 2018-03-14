@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<a href="">Go back to main page</a><br />
-		<form:form action="add" method="POST" modelAttribute="ListForm" charset='utf-8'>
+		<form:form action="add" method="POST" modelAttribute="TaskListModel" charset='utf-8'>
 			Date:
 			<form:input type="text" path="scheduledDate" id="scheduledDate" />
 			

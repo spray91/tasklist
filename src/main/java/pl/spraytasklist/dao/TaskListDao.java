@@ -3,7 +3,7 @@ package pl.spraytasklist.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import pl.pl.spraytasklist.domain.TaskListDomain;
+import pl.spraytasklist.domain.TaskListDomain;
 
 
 @Repository
