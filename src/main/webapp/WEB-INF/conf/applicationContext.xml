@@ -3,17 +3,46 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
  xmlns:mvc="http://www.springframework.org/schema/mvc" 
  xmlns:context="http://www.springframework.org/schema/context" 
+ xmlns:tx="http://www.springframework.org/schema/tx"
  xsi:schemaLocation=" http://www.springframework.org/schema/mvc 
  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
- http://www.springframework.org/schema/beans 
- http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
- http://www.springframework.org/schema/context 
- http://www.springframework.org/schema/context/spring-context-4.0.xsd"> 
+ http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+ http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+ http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd"> 
  
- 	<context:component-scan base-package="pl.spraytasklist" /> 
  	<context:annotation-config /> 
- 	<mvc:annotation-driven />
+ 	<mvc:annotation-driven /> 
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<context:component-scan base-package="pl.spraytasklist" />
  	
+	<context:property-placeholder location="classpath:META-INF/hibernate.properties"/>
+	
+	<bean id="dataSource" 
+	  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	  <property name="driverClassName" value="${jdbc.driverClassName}" />
+	  <property name="url" value="${jdbc.url}" />
+	  <property name="username" value="${jdbc.username}" />
+	  <property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="sessionFactory" 
+	  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	  <property name="dataSource" ref="dataSource" />
+	  <property name="packagesToScan" value="pl.spraytasklist.model" />
+	  <property name="hibernateProperties">
+	   <props>
+		<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+		<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+	   </props>
+	  </property>
+	</bean>
+	
+	<bean id="transactionManager" 
+	 class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	 <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
  	
  	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
  		<property name="prefix"> 
