@@ -30,7 +30,7 @@
  	</bean>
  	
  	<bean id="dataSource" 
-			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://192.168.201.1:3306/spray" />
 		<property name="username" value="spray" />
@@ -50,7 +50,14 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<!-- 
+				 none
+				 validate: validate the schema, makes no changes to the database.
+    			 update: update the schema.
+    			 create: creates the schema, destroying previous data.
+    			 create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped.
+				 -->
 			</props>
 		</property>
 	</bean>

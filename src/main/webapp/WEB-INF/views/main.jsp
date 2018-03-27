@@ -13,6 +13,7 @@
 		<br>
 		<br>
 		<a href="add">Add new task</a><br />
+		<a href="addcat">Add new cat</a><br />
 		<a href="list">Show tasks list</a><br />
 		<h1></h1>
 	</body> 

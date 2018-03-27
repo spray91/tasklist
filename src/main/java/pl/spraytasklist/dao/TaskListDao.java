@@ -1,15 +1,20 @@
 package pl.spraytasklist.dao;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.spraytasklist.domain.TaskListDomain;
+import pl.spraytasklist.model.TaskList;
 
 
 @Repository
-public class TaskListDao {
+public interface TaskListDao extends CrudRepository<TaskList, Integer> {
 	
-	List<TaskListDomain> tasklists = new ArrayList<TaskListDomain>();
+	List<TaskList> findByCategory(String category);
+	
+	//public Optional<TaskList> findById(Integer Id);
+	
+	
+	/*List<TaskListDomain> tasklists = new ArrayList<TaskListDomain>();
 	
 	public void addEntry(TaskListDomain tasklist) {
 		tasklists.add(tasklist);
@@ -29,6 +34,5 @@ public class TaskListDao {
 	
 	public Integer getNextId() {
 		return tasklists.size();
-	}
+	}*/
 }
-//http://dominoc925.blogspot.com/2015/11/an-example-of-using-sqlite-database-in.html
