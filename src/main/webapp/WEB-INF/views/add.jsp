@@ -18,8 +18,12 @@
 			<form:input type="text" path="description" id="description" /> <br />
 			
 			
-			Category:
-			<form:input type="text" path="category" id="category" /> <br />
+			Category:			
+			<form:select path="category">
+    			<form:options items="${categories}" />
+			</form:select>
+			
+			<br />
 			
 			
 			<button type="submit">Submit</button>
