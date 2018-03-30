@@ -67,5 +67,17 @@
 	 class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
+	
+	<mvc:annotation-driven conversion-service="conversionService" />
+	
+	<bean id="conversionService"
+      class="org.springframework.context.support.ConversionServiceFactoryBean">
+    	<property name="converters">
+        	<set>
+        		<bean class="pl.spraytasklist.converter.IdToCateogryConverter" />
+        	</set>
+    	</property>
+	</bean>
+	
 		
 </beans>

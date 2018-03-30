@@ -18,7 +18,7 @@ public class IdToCateogryConverter implements Converter<Object, Category>{
 	            return (Category)element;
 	        }
 	        else {
-	            Integer id = Integer.parseInt((String)element);
+	            int id = Integer.parseInt((String)element);
 	            Category category= categorydao.findById(id);
 	            System.out.println("Category : "+ category);
 	            return category;
