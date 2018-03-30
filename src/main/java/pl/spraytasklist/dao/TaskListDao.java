@@ -1,34 +1,18 @@
 package pl.spraytasklist.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.spraytasklist.domain.TaskListDomain;
+
+import pl.spraytasklist.model.Category;
+import pl.spraytasklist.model.TaskList;
 
 
 @Repository
-public class TaskListDao {
+public interface TaskListDao extends CrudRepository<TaskList, Integer> {
 	
-	List<TaskListDomain> tasklists = new ArrayList<TaskListDomain>();
+	TaskList findByCategory(Category category);
 	
-	public void addEntry(TaskListDomain tasklist) {
-		tasklists.add(tasklist);
-	}
+	TaskList findById(int id);
 	
-	public List<TaskListDomain> getLists(){
-		return tasklists;
-	}
-	
-	public TaskListDomain getListById(Integer id) {
-		if(id<tasklists.size()) {
-			return tasklists.get(id);
-		} else {
-			return null;
-		}
-	}
-	
-	public Integer getNextId() {
-		return tasklists.size();
-	}
+	void saveTask(TaskList tasklist);
 }
-//http://dominoc925.blogspot.com/2015/11/an-example-of-using-sqlite-database-in.html
