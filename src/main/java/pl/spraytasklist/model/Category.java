@@ -59,11 +59,6 @@ public class Category {
     	return this.tasklist;
     }
     
-    @Override
-    public String toString() {
-    	return String.format(
-    			"Category[ID=%d, Name=%s, Desc=%s",
-    			id, name, description);
-    }
+
 
 }

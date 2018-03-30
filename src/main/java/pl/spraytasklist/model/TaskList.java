@@ -49,7 +49,7 @@ public class TaskList {
     @Override
     public String toString() {
     	return String.format(
-    			"Task[ID=%d, Description=%s, category=%s, Scheduled Date=%tD",
+    			"Task[ID=%d, Description=%s, category=%s, Scheduled Date=%tD]",
     			id, description, category, scheduledDate);
     }
 

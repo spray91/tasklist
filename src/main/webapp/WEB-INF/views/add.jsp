@@ -12,10 +12,10 @@
 		<a href="">Go back to main page</a><br />
 		<form:form action="${userActionUrl}" method="POST" modelAttribute="TaskList" charset='utf-8'>
 			Date:
-			<form:input type="date" path="scheduledDate" id="scheduledDate" /><br />
+			<form:input type="date" path="scheduledDate" id="scheduledDate" value="1991-11-11" /><br />
 			
 			Desc:
-			<form:input type="text" path="description" id="description" /> <br />
+			<form:input type="text" path="description" id="description" value="test desc" /> <br />
 			
 			
 			Category:			

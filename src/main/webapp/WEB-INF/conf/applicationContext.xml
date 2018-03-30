@@ -73,9 +73,9 @@
 	<bean id="conversionService"
       class="org.springframework.context.support.ConversionServiceFactoryBean">
     	<property name="converters">
-        	<set>
+        	<list>
         		<bean class="pl.spraytasklist.converter.IdToCateogryConverter" />
-        	</set>
+        	</list>
     	</property>
 	</bean>
 	

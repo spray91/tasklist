@@ -42,7 +42,7 @@ public class TaskListController {
 	@GetMapping("/add") 
 	 public String addTask(Model model, TaskList tasklist) {
 		 model.addAttribute("TaskList",tasklist );
-		 model.addAttribute("categories",categorydao.findAll());
+		 model.addAttribute("categories",categoryservice.findAll());
 		 return "add"; 
 	 }
 	 

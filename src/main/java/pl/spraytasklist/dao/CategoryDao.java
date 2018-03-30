@@ -1,6 +1,7 @@
 package pl.spraytasklist.dao;
 
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.spraytasklist.model.Category;
@@ -10,6 +11,8 @@ import pl.spraytasklist.model.Category;
 public interface CategoryDao extends CrudRepository<Category, Integer> {
 	
 	Category findById(int id);
+	
+	List<Category> findAll();
 	
 	void saveCategory(Category category);
 }
