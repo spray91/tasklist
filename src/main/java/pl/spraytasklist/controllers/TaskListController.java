@@ -15,8 +15,11 @@ import java.util.Date;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.core.convert.ConversionService;
 
+import pl.spraytasklist.converter.IdToCateogryConverter;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 import pl.spraytasklist.service.CategoryService;
@@ -26,15 +29,28 @@ import pl.spraytasklist.service.TaskListService;
 @Controller
 public class TaskListController {
 	
-	@Autowired
 	protected TaskListService takslistservice;
 	
-	@Autowired
+	@Autowired(required = true)
+	@Qualifier(value = "TaskListService")
+	public void setTaskListService(TaskListService tls) {
+	    this.takslistservice = tls;
+	}
+	
 	protected CategoryService categoryservice;
+	
+	@Autowired(required = true)
+	@Qualifier(value = "CategoryService")
+	public void setCategoryService(CategoryService cs) {
+	    this.categoryservice = cs;
+	}
+	
+	
 	
 	@RequestMapping("/")
 	public String mainPage(Model model) {
 		categoryservice.saveCategory(new Category("asd","aa"));
+		categoryservice.saveCategory(new Category("asd2","aa2"));
 		model.addAttribute("message", categoryservice.findById(1));
 		return "main";
 	}
@@ -49,10 +65,12 @@ public class TaskListController {
 	 @PostMapping("/add") 
 	 public String handleTask(@ModelAttribute("TaskList") @Valid TaskList TaskList, BindingResult result, Model model) { 
 		 if (result.hasErrors()) {
+			 System.out.println("controller nok");
 			 model.addAttribute("message", "error");
 			 model.addAttribute("result", result);
 			 return "add";			 
 		 } else {
+			 System.out.println("controller ok");
 			 takslistservice.saveTask(TaskList);
 
 			 

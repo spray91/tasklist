@@ -24,6 +24,9 @@ public class Category {
 	private String name;
 	
 	private String description;
+	    
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+    private List<TaskList> tasklist;
 
     protected Category() {}
     
@@ -32,8 +35,10 @@ public class Category {
     	this.description = description;
     }
     
-    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
-    private List<TaskList> tasklist;
+    @Override
+    public String toString() {
+    	return name;
+    }
     
     public void setName(String name) {
     	this.name = name;
@@ -57,6 +62,10 @@ public class Category {
     
     public List<TaskList> getTaskList() {
     	return this.tasklist;
+    }
+    
+    public Integer getId() {
+    	return this.id;
     }
     
 

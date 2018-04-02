@@ -7,23 +7,19 @@ import pl.spraytasklist.model.Category;
 import pl.spraytasklist.service.CategoryService;
 
 @Component
-public class IdToCateogryConverter implements Converter<Object, Category>{
+public class IdToCateogryConverter implements Converter<String, Category>{
 	
 	    @Autowired
 	    CategoryService categoryservice;
 
-	    public Category convert(Object element) {
-	    	System.out.println("debug");
-	        if (element instanceof Category) {
-	            return (Category)element;
-	        }
-	        else {
-	            int id = Integer.parseInt((String)element);
-	            Category category= categoryservice.findById(id);
-	            System.out.println("Category : "+ category);
-	            return category;
-	        }
-
+	    public Category convert(String name) {
+	    	System.out.println("converter");
+	    	System.out.println(name);
+	    	//System.out.println(categoryservice.findAll());
+	        //Category category= categoryservice.findByName(name);
+	        System.out.println("conv-end");
+	        //System.out.println(category);
+	        return categoryservice.findByName(name);
 	    }
 
 }

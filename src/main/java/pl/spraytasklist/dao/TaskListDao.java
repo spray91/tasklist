@@ -14,5 +14,5 @@ public interface TaskListDao extends CrudRepository<TaskList, Integer> {
 	
 	TaskList findById(int id);
 	
-	void saveTask(TaskList tasklist);
+	//void saveTask(TaskList tasklist);
 }

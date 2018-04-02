@@ -1,6 +1,5 @@
 package pl.spraytasklist.service;
 
-
 import pl.spraytasklist.dao.TaskListDao;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
@@ -8,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("TaskListservice")
+@Service("TaskListService")
 @Transactional
 public class TaskListServiceImpl implements TaskListService {
 	
@@ -24,6 +23,6 @@ public class TaskListServiceImpl implements TaskListService {
 	}
 	
 	public void saveTask(TaskList tasklist) {
-		dao.saveTask(tasklist);
+		dao.save(tasklist);
 	}
 }
