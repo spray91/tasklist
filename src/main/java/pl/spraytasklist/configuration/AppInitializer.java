@@ -1,14 +1,6 @@
 package pl.spraytasklist.configuration;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
-import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.*;

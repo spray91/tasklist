@@ -1,9 +1,6 @@
 package pl.spraytasklist.model;
 
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -27,21 +24,22 @@ public class TaskList {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-    @Size(min=3, max=50)
+    @Size(max=50)
 	private String description;
+    
+    @NotNull
+    @Size(min=2, max=50)
+	private String title;
     
     @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 	
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date dueDate;
     
@@ -62,12 +60,12 @@ public class TaskList {
     	this.category = category;
     }
     
-    @Override
+    /*@Override
     public String toString() {
     	return String.format(
     			"Task[ID=%d, Description=%s, category=%s, Scheduled Date=%tD]",
     			id, description, category, creationDate);
-    }
+    }*/
 
 	public Category getCategory() {
 		return category;
@@ -123,5 +121,13 @@ public class TaskList {
 
 	public void setIsDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+	
+	public String getTitle() {
+		return this.title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

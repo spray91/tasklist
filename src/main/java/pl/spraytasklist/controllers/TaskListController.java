@@ -9,17 +9,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.core.convert.ConversionService;
-
-import pl.spraytasklist.converter.IdToCateogryConverter;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 import pl.spraytasklist.service.CategoryService;
@@ -49,9 +44,11 @@ public class TaskListController {
 	
 	@RequestMapping("/")
 	public String mainPage(Model model) {
-		categoryservice.saveCategory(new Category("asd","aa"));
-		categoryservice.saveCategory(new Category("asd2","aa2"));
-		model.addAttribute("message", categoryservice.findById(1));
+		if(categoryservice.findAll().isEmpty()) {
+			categoryservice.saveCategory(new Category("Birthday","Birthday"));
+			categoryservice.saveCategory(new Category("Exam","Exam"));
+			categoryservice.saveCategory(new Category("Event","Event"));
+		}
 		return "main";
 	}
 	
@@ -63,30 +60,39 @@ public class TaskListController {
 	 }
 	 
 	 @PostMapping("/add") 
-	 public String handleTask(@ModelAttribute("TaskList") @Valid TaskList TaskList, BindingResult result, Model model) { 
+	 public String handleTask(@ModelAttribute("TaskList") @Valid TaskList tasklist, BindingResult result, Model model) { 
 		 if (result.hasErrors()) {
-			 System.out.println("controller nok");
 			 model.addAttribute("message", "error");
 			 model.addAttribute("result", result);
+			 model.addAttribute("TaskList",tasklist );
+			 model.addAttribute("categories",categoryservice.findAll());
 			 return "add";			 
 		 } else {
-			 System.out.println("controller ok");
-			 takslistservice.saveTask(TaskList);
-
-			 
-			 return "redirect:/"; 
+			tasklist.setCreationDate(new Date());
+			tasklist.setIsDeleted(false);
+			tasklist.setIsDone(false);
+			takslistservice.saveTask(tasklist);			 
+			return "redirect:/"; 
 		 } 
 	 }
 	
 	@RequestMapping("/list")
-	public String showList(Model model) {
+	public String showList(Model model, TaskList tasklist) {
+		if(takslistservice.findAll().isEmpty()) {
+			model.addAttribute("isEmpty", true);
+		} else{
+			model.addAttribute("isEmpty", false);
+		}
+		model.addAttribute("tasklist",takslistservice.findAll());
+		//TODO: pobrac wszystkie taski, zrobic tablice / liste ktora bedzie miala tylko czas miedzy due date a currentDate, i boolean czy data juz byla czy nie
 		
-		model.addAttribute("test", "test");
+		//TODO: zapis do pliku csv
 		return "list";
 	}
 	
 	@RequestMapping("/details")
 	public String showDetails() {
+		//TODO: menu z title i przechodzenie task by task
 		return "details";
 	}
 	

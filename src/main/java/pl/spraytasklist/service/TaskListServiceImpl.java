@@ -3,6 +3,9 @@ package pl.spraytasklist.service;
 import pl.spraytasklist.dao.TaskListDao;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,5 +27,13 @@ public class TaskListServiceImpl implements TaskListService {
 	
 	public void saveTask(TaskList tasklist) {
 		dao.save(tasklist);
+	}
+	
+	public List<TaskList> findAll(){
+		return dao.findAll();
+	}
+	
+	public TaskList findByTitle(String title) {
+		return dao.findByTitle(title);
 	}
 }

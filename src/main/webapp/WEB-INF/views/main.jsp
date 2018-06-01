@@ -8,7 +8,7 @@
 		<title>Main Page spray TODO List</title>
 	</head>
 	<body>
-		<h1>Welcom on main page</h1> 
+		<h1>Welcome on main page</h1> 
 		<p><strong>${message}</strong></p>
 		<br>
 		<br>
