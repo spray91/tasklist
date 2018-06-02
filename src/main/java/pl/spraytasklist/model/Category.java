@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="category")
@@ -19,9 +22,10 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@NotNull
+	@NotBlank
 	private String name;
 	
+	@Size(min=2, max=200)
 	private String description;
 	    
     @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)

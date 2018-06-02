@@ -99,15 +99,18 @@ public class TaskListController {
 	@GetMapping("/addcat") 
 	 public String addCategory(Model model, Category category) {
 		 model.addAttribute("Category",category );
-		 return "addcat"; 
+		 return "addcatbs"; 
 	 }
 	 
 	 @PostMapping("/addcat") 
-	 public String handleCategory(@ModelAttribute("Category") @Valid Category category, BindingResult result, Model model) { 
+	 public String handleCategory(@Valid @ModelAttribute("Category") Category category, BindingResult result, Model model) { 
 		 if (result.hasErrors()) {
 			 model.addAttribute("message", "error");
 			 model.addAttribute("result", result);
-			 return "addcat";			 
+			 System.out.println(result);
+			 System.out.println(category);
+			 System.out.println(model);
+			 return "addcatbs";			 
 		 } else {
 			 categoryservice.saveCategory(category);		 
 			 return "redirect:/"; 

@@ -13,8 +13,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.spraytasklist.converter.IdToCateogryConverter;
 
-@EnableWebMvc
 @Configuration
+@EnableWebMvc
 @ComponentScan({"pl.spraytasklist"})
 @EnableJpaRepositories(basePackages = "pl.spraytasklist")
 public class AppConfig implements WebMvcConfigurer {
