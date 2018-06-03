@@ -56,7 +56,7 @@ public class TaskListController {
 	 public String addTask(Model model, TaskList tasklist) {
 		 model.addAttribute("TaskList",tasklist );
 		 model.addAttribute("categories",categoryservice.findAll());
-		 return "add"; 
+		 return "add2"; 
 	 }
 	 
 	 @PostMapping("/add") 
@@ -66,7 +66,7 @@ public class TaskListController {
 			 model.addAttribute("result", result);
 			 model.addAttribute("TaskList",tasklist );
 			 model.addAttribute("categories",categoryservice.findAll());
-			 return "add";			 
+			 return "add2";			 
 		 } else {
 			tasklist.setCreationDate(new Date());
 			tasklist.setIsDeleted(false);
@@ -107,9 +107,6 @@ public class TaskListController {
 		 if (result.hasErrors()) {
 			 model.addAttribute("message", "error");
 			 model.addAttribute("result", result);
-			 System.out.println(result);
-			 System.out.println(category);
-			 System.out.println(model);
 			 return "addcatbs";			 
 		 } else {
 			 categoryservice.saveCategory(category);		 

@@ -24,7 +24,7 @@ public class TaskList {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-    @Size(max=50)
+    @Size(max=200)
 	private String description;
     
     @NotNull
@@ -39,11 +39,11 @@ public class TaskList {
     @Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
-    @NotNull
+    //@NotNull
     @Temporal(TemporalType.TIMESTAMP)
 	private Date dueDate;
     
-    @NotNull
+    //@NotNull
     @Min(1)
     @Max(4)
     private Integer priority;

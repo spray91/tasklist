@@ -34,15 +34,16 @@
         <div class="col-md-6 col-md-offset-3">
           <form:form action="${userActionUrl}" method="post" modelAttribute="Category" >
          	<fieldset class="form-group">
-              <label for="name">Name:</label>
-              <form:input type="text" class="form-control" path="name" id="name" placeholder="Wprowadź opis"/>
+              <label for="name">Name</label>
+              <form:input type="text" class="form-control" path="name" id="name" placeholder="Enter new category name"/>
               <div class="has-error">
                 <form:errors path="name" class="help-inline"/>
               </div>
 			</fieldset>
+			
          	<fieldset class="form-group">
               <label for="description">Description</label>
-              <form:input class="form-control" path="description" id="description" placeholder="Wprowadź opis"/>
+              <form:textarea rows="5" class="form-control" path="description" id="description" placeholder="Enter new category desciption (optional)"/>
               <div class="has-error">
                 <form:errors path="description" class="help-inline"/>
               </div>
