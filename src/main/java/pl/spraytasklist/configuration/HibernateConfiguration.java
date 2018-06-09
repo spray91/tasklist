@@ -28,7 +28,9 @@ public class HibernateConfiguration {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://192.168.201.1:3306/spray");
+		//dataSource.setUrl("jdbc:mysql://192.168.201.1:3306/spray");
+		//dataSource.setUrl("jdbc:mysql://192.168.56.101:3306/spray");
+		dataSource.setUrl("jdbc:mysql://192.168.56.101:3306/spray?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 		dataSource.setUsername("spray");
 		dataSource.setPassword("chaslospraya666");
 		return dataSource;

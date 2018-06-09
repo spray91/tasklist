@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="owntags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
     response.setCharacterEncoding("UTF-8");
     request.setCharacterEncoding("UTF-8");
@@ -10,21 +11,13 @@
 <html lang="en">
 <head>
     <title>List of tasks</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<c:url value='/static/css/style.css' />">
-    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link href="<c:url value='/static/time/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet" media="screen">
+
+	<link rel="stylesheet" href='<spring:url value="/static/bootstrap/dist/css/bootstrap.min.css"/>'>
+	<link href='<spring:url value="/static/time/css/bootstrap-datetimepicker.min.css" />' rel="stylesheet" media="screen">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<c:url value='/static/css/summernote.css' />" rel="stylesheet">
-    <script src="<c:url value='/static/js/summernote.min.js' />"></script>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+		
+	<script type="text/javascript" src='<spring:url value="/static/jquery-3.3.1.min.js"/>' ></script>
+	
 </head>
 <body>
 <body >
@@ -48,32 +41,54 @@
                 <form:errors path="description" class="help-inline"/>
               </div>
 			</fieldset>
-			
-			<fieldset class="form-group">
-              <label for="category">Category</label>
-              <form:textarea rows="5" class="form-control" path="description" id="description" placeholder="Enter new task desciption (optional)"/>
-              <div class="has-error">
-                <form:errors path="description" class="help-inline"/>
-              </div>
-			</fieldset>
-			
+
 			<fieldset class="form-group">
 				<div class="form-group">
-			      <label for="sel1">Category</label>
+			      <label for="category">Category</label>
 			      <form:select class="form-control" path="category">
 					<form:options items="${categories}" />
 			      </form:select>
 			    </div>
 			</fieldset>
 			
+			<fieldset class="form-group">
+				<div class="form-group">
+			      <label for="priority">Priority</label>
+			      <form:select class="form-control" path="priority">
+					<form:option value="4">4</form:option>
+					<form:option value="3">3</form:option>
+					<form:option value="2">2</form:option>
+					<form:option value="1">1</form:option>
+			      </form:select>
+			    </div>
+			</fieldset>
 			
-          	<br />
+			<fieldset class="form-group">
+				<div class="form-group">
+					<label for="datetimepicker1">Due Date</label>
+		        	<div class="input-group date" id="datetimepicker1">
+		            	<form:input type='text' class="form-control" path="dueDate" id="dueDate" />
+		                <span class="input-group-addon ">
+		                	<span class="glyphicon glyphicon-calendar"></span>
+		                </span>
+		            </div>
+		        </div>
+			</fieldset>
+
           	<button type="submit" class="btn">Submit</button>
         
 		</form:form>
         </div>
       </div>
     </div>
-
+    
+	<script type="text/javascript" src='<spring:url value="/static/bootstrap.min.js" />'></script>
+	<script type="text/javascript" src='<spring:url value="/static/moment/moment.js"/>'></script>
+	<script type="text/javascript" src='<spring:url value="/static/time/js/bootstrap-datetimepicker.js" />'></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#datetimepicker1').datetimepicker();
+        });
+	</script>   
 </body>
 </html>
