@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 
@@ -22,4 +24,6 @@ public interface TaskListService {
 	
 	List<TaskList> findByDueDate(LocalDateTime dueDate);
 	
+	@Transactional
+    void removeById(Integer id);
 }

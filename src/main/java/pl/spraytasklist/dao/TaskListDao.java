@@ -11,6 +11,7 @@ import javax.persistence.TemporalType;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
@@ -29,4 +30,6 @@ public interface TaskListDao extends CrudRepository<TaskList, Integer> {
 	
 	TaskList findByTitle(String title);
 	
+	@Transactional
+    void removeById(Integer id);
 }

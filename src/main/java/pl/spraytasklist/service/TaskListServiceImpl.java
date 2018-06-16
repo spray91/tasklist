@@ -44,5 +44,9 @@ public class TaskListServiceImpl implements TaskListService {
 	public List<TaskList> findByDueDate(LocalDateTime dueDate) {
 		return dao.findByDueDate(dueDate);
 	}
+	
+	public void removeById(Integer id) {
+		dao.removeById(id);
+	}
 
 }

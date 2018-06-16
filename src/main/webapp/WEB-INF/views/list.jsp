@@ -44,7 +44,10 @@
 		            <div class="col-md-6">
 		                <div class="panel panel-default">
 		                	<div class="panel-heading">
-		                		<h4><c:out value="${objectArr.title}" /></h4>
+		                		<h4>
+		                			<c:out value="${objectArr.title}" />
+		                			<a href="<c:url value='/delete/${objectArr.id}' />" class="btn btn-danger btn-xs pull-right" role="button">Delete</a>
+		                		</h4>
 		                	</div>
 		                    <div class="panel-body">
 		                    	<h4>Id: <c:out value="${objectArr.id}" /></h4><br />
@@ -57,8 +60,11 @@
 		                </div>
 		            </div>
 		        </c:forEach>
-		
+		        
 		    </div>
+		    <div class="col-md-6">
+				<a href="<c:url value='/downloadCSV' />" class="btn btn-primary" role="button">Download CSV</a>
+			</div>
 		 </c:when>
 	</c:choose>
 </div>

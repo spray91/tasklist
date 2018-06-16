@@ -20,17 +20,15 @@ public class customDateServiceImpl {
 	
 	
 	public List<String> getAllDueDates(){
-		List<TaskList> test = new ArrayList<TaskList>();
+		List<TaskList> taskList = new ArrayList<TaskList>();
 		List<String> dates = new ArrayList<String>();
-		test = dao.findAll();
+		taskList = dao.findAll();
 		
-		for(TaskList task : test){
-            
+		for(TaskList task : taskList){
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime dateTime = task.getDueDate();
             String formattedDateTime = dateTime.format(formatter); // "1986-04-08 12:30"
             dates.add(formattedDateTime);
-            System.out.println("Date : "+formattedDateTime);
 		}
 		return dates;
 	}
