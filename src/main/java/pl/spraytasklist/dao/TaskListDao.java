@@ -1,7 +1,14 @@
 package pl.spraytasklist.dao;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +25,8 @@ public interface TaskListDao extends CrudRepository<TaskList, Integer> {
 	
 	List<TaskList> findAll();
 	
+	List<TaskList> findByDueDate(LocalDateTime dueDate);
+	
 	TaskList findByTitle(String title);
 	
-	//void saveTask(TaskList tasklist);
 }

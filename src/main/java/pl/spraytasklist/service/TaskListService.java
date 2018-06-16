@@ -1,5 +1,8 @@
 package pl.spraytasklist.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import pl.spraytasklist.model.Category;
@@ -16,4 +19,7 @@ public interface TaskListService {
 	void saveTask(TaskList tasklist);
 	
 	List<TaskList> findAll();
+	
+	List<TaskList> findByDueDate(LocalDateTime dueDate);
+	
 }

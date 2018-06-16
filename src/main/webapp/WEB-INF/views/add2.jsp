@@ -49,6 +49,9 @@
 					<form:options items="${categories}" />
 			      </form:select>
 			    </div>
+			    <div class="has-error">
+                	<form:errors path="category" class="help-inline"/>
+              	</div>
 			</fieldset>
 			
 			<fieldset class="form-group">
@@ -61,18 +64,24 @@
 					<form:option value="1">1</form:option>
 			      </form:select>
 			    </div>
+			    <div class="has-error">
+                	<form:errors path="priority" class="help-inline"/>
+              	</div>
 			</fieldset>
 			
 			<fieldset class="form-group">
 				<div class="form-group">
 					<label for="datetimepicker1">Due Date</label>
 		        	<div class="input-group date" id="datetimepicker1">
-		            	<form:input type='text' class="form-control" path="dueDate" id="dueDate" />
+		            	<form:input type="text" class="form-control" path="dueDate" id="dueDate" placeholder="yyyy-MM-dd HH:mm" />
 		                <span class="input-group-addon ">
 		                	<span class="glyphicon glyphicon-calendar"></span>
 		                </span>
 		            </div>
 		        </div>
+		        <div class="has-error">
+                	<form:errors path="dueDate" class="help-inline"/>
+              	</div>
 			</fieldset>
 
           	<button type="submit" class="btn">Submit</button>

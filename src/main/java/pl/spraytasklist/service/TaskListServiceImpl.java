@@ -4,6 +4,10 @@ import pl.spraytasklist.dao.TaskListDao;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +40,9 @@ public class TaskListServiceImpl implements TaskListService {
 	public TaskList findByTitle(String title) {
 		return dao.findByTitle(title);
 	}
+
+	public List<TaskList> findByDueDate(LocalDateTime dueDate) {
+		return dao.findByDueDate(dueDate);
+	}
+
 }

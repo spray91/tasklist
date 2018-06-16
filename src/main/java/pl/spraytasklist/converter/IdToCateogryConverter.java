@@ -13,12 +13,6 @@ public class IdToCateogryConverter implements Converter<String, Category>{
 	    CategoryService categoryservice;
 
 	    public Category convert(String name) {
-	    	/*System.out.println("converter");
-	    	System.out.println(name);
-	    	//System.out.println(categoryservice.findAll());
-	        //Category category= categoryservice.findByName(name);
-	        System.out.println("conv-end");
-	        //System.out.println(category);*/
 	        return categoryservice.findByName(name);
 	    }
 

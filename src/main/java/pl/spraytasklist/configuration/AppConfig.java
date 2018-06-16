@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.spraytasklist.converter.IdToCateogryConverter;
+import pl.spraytasklist.converter.StringToLocalDateTimeConverter;
 
 @Configuration
 @EnableWebMvc
@@ -25,6 +26,9 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	IdToCateogryConverter idtocategoryconverter;
+	
+	@Autowired
+	StringToLocalDateTimeConverter stringtolocaldatetimeconverter;
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -44,6 +48,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(idtocategoryconverter);    
+        registry.addConverter(stringtolocaldatetimeconverter);
     }
     
 }

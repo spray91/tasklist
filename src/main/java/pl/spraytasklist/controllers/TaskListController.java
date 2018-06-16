@@ -3,22 +3,23 @@ package pl.spraytasklist.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
+
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 import pl.spraytasklist.service.CategoryService;
 import pl.spraytasklist.service.TaskListService;
+import pl.spraytasklist.service.customDateServiceImpl;
 
 
 @Controller
@@ -40,15 +41,29 @@ public class TaskListController {
 	    this.categoryservice = cs;
 	}
 	
+	protected customDateServiceImpl customdateserviceimpl;
 	
+	@Autowired(required = true)
+	@Qualifier(value = "customDateServiceImpl")
+	public void setTaskListService(customDateServiceImpl cdsi) {
+	    this.customdateserviceimpl = cdsi;
+	}
 	
 	@RequestMapping("/")
-	public String mainPage(Model model) {
+	public String mainPage(Model model, TaskList tasklist) {
 		if(categoryservice.findAll().isEmpty()) {
 			categoryservice.saveCategory(new Category("Birthday","Birthday"));
 			categoryservice.saveCategory(new Category("Exam","Exam"));
 			categoryservice.saveCategory(new Category("Event","Event"));
 		}
+		/*toddate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		
+		if(takslistservice.findAll().isEmpty()) {
+			model.addAttribute("isEmpty", true);
+		} else{
+			model.addAttribute("isEmpty", false);
+		}
+		model.addAttribute("tasklist",takslistservice.findAll());*/
 		return "main";
 	}
 	
@@ -60,15 +75,14 @@ public class TaskListController {
 	 }
 	 
 	 @PostMapping("/add") 
-	 public String handleTask(@ModelAttribute("TaskList") @Valid TaskList tasklist, BindingResult result, Model model) { 
+	 public String handleTask(@Valid @ModelAttribute("TaskList") TaskList tasklist, BindingResult result, Model model) { 
 		 if (result.hasErrors()) {
-			 model.addAttribute("message", "error");
 			 model.addAttribute("result", result);
 			 model.addAttribute("TaskList",tasklist );
 			 model.addAttribute("categories",categoryservice.findAll());
 			 return "add2";			 
 		 } else {
-			tasklist.setCreationDate(new Date());
+			tasklist.setCreationDate(LocalDateTime.now());
 			tasklist.setIsDeleted(false);
 			tasklist.setIsDone(false);
 			takslistservice.saveTask(tasklist);			 
@@ -84,9 +98,9 @@ public class TaskListController {
 			model.addAttribute("isEmpty", false);
 		}
 		model.addAttribute("tasklist",takslistservice.findAll());
+		model.addAttribute("dueDates",customdateserviceimpl.getAllDueDates());
 		//TODO: pobrac wszystkie taski, zrobic tablice / liste ktora bedzie miala tylko czas miedzy due date a currentDate, i boolean czy data juz byla czy nie
-		
-		//TODO: zapis do pliku csv
+
 		return "list";
 	}
 	
@@ -114,10 +128,25 @@ public class TaskListController {
 		 } 
 	 }
 	
-	@InitBinder
+	/*@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	    binder.registerCustomEditor(Date.class, new CustomDateEditor(
-	            dateFormat, false));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+	    //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	    binder.registerCustomEditor(LocalDateTime.class, new CustomDateEditor(
+	    		formatter, false));
 	}
+	 @InitBinder
+	 protected void initBinder(WebDataBinder binder) {
+	   binder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
+	     @Override
+	     public void setAsText(String text) throws IllegalArgumentException{
+	       setValue(LocalDateTime.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+	     }
+
+	     @Override
+	     public String getAsText() throws IllegalArgumentException {
+	       return LocalDateTimeFormatter.print(LocalDateTime.class, ));
+	     }
+	   });
+	 }*/
 }

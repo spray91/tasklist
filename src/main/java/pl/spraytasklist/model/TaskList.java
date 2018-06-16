@@ -4,7 +4,11 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+//import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,12 +40,12 @@ public class TaskList {
     @JoinColumn(name = "category_id")
     private Category category;
 	
-    @Temporal(TemporalType.TIMESTAMP)
-	private Date creationDate;
+    //@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime creationDate;
 	
     //@NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-	private Date dueDate;
+    //@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime dueDate;
     
     //@NotNull
     @Min(1)
@@ -54,7 +58,7 @@ public class TaskList {
     
     protected TaskList() {}
     
-    public TaskList(String description, Category category, Date scheduledDate) {
+    public TaskList(String description, Category category, LocalDateTime scheduledDate) {
     	this.description = description;
     	this.creationDate = scheduledDate;
     	this.category = category;
@@ -83,19 +87,19 @@ public class TaskList {
 		this.description = description;
 	}
 	
-	public Date getCreationDate() {
+	public LocalDateTime getCreationDate() {
 		return this.creationDate;
 	}
 	
-	public void setCreationDate(Date scheduledDate) {
+	public void setCreationDate(LocalDateTime scheduledDate) {
 		this.creationDate = scheduledDate;
 	}
 	
-	public Date getDueDate() {
+	public LocalDateTime getDueDate() {
 		return this.dueDate;
 	}
 	
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(LocalDateTime dueDate) {
 		this.dueDate = dueDate;
 	}
 	
@@ -129,5 +133,9 @@ public class TaskList {
 	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public Integer getId() {
+		return this.id;
 	}
 }

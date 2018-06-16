@@ -3,7 +3,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="<c:url value='' />"><span class="glyphicon glyphicon-list-alt"></span> Task List</a>
+            <a class="navbar-brand" href="<c:url value='/' />"><span class="glyphicon glyphicon-list-alt"></span> Task List</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">

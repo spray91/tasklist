@@ -38,7 +38,7 @@
 		<c:when test="${isEmpty == false}"> 
 		    <div class="row">
 		        <div class="text-center bestRegion">
-		            <h2>Your tasks</h2>
+		            <h2>Your tasks</h2><br />
 		        </div>
 		        <c:forEach items="${tasklist}" var="objectArr" varStatus="loop">
 		            <div class="col-md-6">
@@ -47,9 +47,12 @@
 		                		<h4><c:out value="${objectArr.title}" /></h4>
 		                	</div>
 		                    <div class="panel-body">
-		                        <h4>Due date: <c:out value="${objectArr.dueDate}" /></h4><br />
+		                    	<h4>Id: <c:out value="${objectArr.id}" /></h4><br />
+		                        <h4>Due date: <c:out value="${dueDates[loop.index]}" /></h4><br />
 		                        <h4>Description: <c:out value="${objectArr.description}" /></h4><br />
-		                        <h4>Description: <c:out value="${objectArr.creationDate}" /></h4><br />
+		                        <h4>Category: <c:out value="${objectArr.category}" /></h4><br />
+		                        <h4>Priority: <c:out value="${objectArr.priority}" /></h4><br />
+		                        <h4>Creation Date: <c:out value="${objectArr.creationDate}" /></h4><br />
 		                    </div>
 		                </div>
 		            </div>
@@ -59,31 +62,6 @@
 		 </c:when>
 	</c:choose>
 </div>
-<!-- 
-<c:if test ="${not empty successMsg}">
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-10"><h4>${successMsg}</h4></div>
-                        <div class="col-md-2"><span class="pull-right"><button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Okej</button></span></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        $(window).load(function(){
-            $('#myModal').modal('show');
-        });
-    </script>
-</c:if>
--->
 
 </body>
 </html>
