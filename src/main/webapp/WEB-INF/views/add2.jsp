@@ -11,13 +11,13 @@
 <html lang="en">
 <head>
     <title>List of tasks</title>
-
-	<link rel="stylesheet" href='<spring:url value="/static/bootstrap/dist/css/bootstrap.min.css"/>'>
-	<link href='<spring:url value="/static/time/css/bootstrap-datetimepicker.min.css" />' rel="stylesheet" media="screen">
+ 
+	<link rel="stylesheet" href='<spring:url value="/static/bootstrap/dist/css/bootstrap.min.css"/>'>	
+	<link href='<spring:url value="/static/time/css/bootstrap-datetimepicker.min.css" />' rel="stylesheet" media="screen">	
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 		
 	<script type="text/javascript" src='<spring:url value="/static/jquery-3.3.1.min.js"/>' ></script>
-	
+
 </head>
 <body>
 <body >
@@ -91,13 +91,14 @@
       </div>
     </div>
     
-	<script type="text/javascript" src='<spring:url value="/static/bootstrap.min.js" />'></script>
+   	<script type="text/javascript" src='<spring:url value="/static/bootstrap.min.js" />'></script>
 	<script type="text/javascript" src='<spring:url value="/static/moment/moment.js"/>'></script>
 	<script type="text/javascript" src='<spring:url value="/static/time/js/bootstrap-datetimepicker.js" />'></script>
 	<script type="text/javascript">
 		$(function () {
 			$('#datetimepicker1').datetimepicker();
         });
-	</script>   
+	</script>
+	
 </body>
 </html>

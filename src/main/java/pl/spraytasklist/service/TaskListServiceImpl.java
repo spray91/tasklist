@@ -3,13 +3,8 @@ package pl.spraytasklist.service;
 import pl.spraytasklist.dao.TaskListDao;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,5 +43,13 @@ public class TaskListServiceImpl implements TaskListService {
 	public void removeById(Integer id) {
 		dao.removeById(id);
 	}
-
+	
+	
+	public List<TaskList> findAllByOrderByDueDate(){
+		return dao.findAllByOrderByDueDate();
+	}
+	
+	public List<TaskList> findAllByOrderByPriority(){
+		return dao.findAllByOrderByPriority();
+	}
 }

@@ -35,8 +35,7 @@ public class CSVDownloadController {
         String csvFileName = "tasks.csv";
  
         response.setContentType("text/csv");
- 
-        // creates mock data
+
         String headerKey = "Content-Disposition";
         String headerValue = String.format("attachment; filename=\"%s\"",
                 csvFileName);
@@ -44,7 +43,6 @@ public class CSVDownloadController {
  
         List<TaskList> tasklist = takslistservice.findAll();
  
-        // uses the Super CSV API to generate CSV data from the model data
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
                 CsvPreference.STANDARD_PREFERENCE);
  

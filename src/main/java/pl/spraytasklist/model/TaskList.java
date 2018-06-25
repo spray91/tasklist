@@ -54,7 +54,10 @@ public class TaskList {
     
     private boolean isDone;
     
-    private boolean isDeleted;
+    private LocalDateTime doneDate;
+    
+    private Long timeToDeadline;
+    
     
     protected TaskList() {}
     
@@ -118,14 +121,6 @@ public class TaskList {
 	public void setIsDone(boolean isDone) {
 		this.isDone = isDone;
 	}
-
-	public boolean getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
 	
 	public String getTitle() {
 		return this.title;
@@ -137,5 +132,21 @@ public class TaskList {
 	
 	public Integer getId() {
 		return this.id;
+	}
+
+	public LocalDateTime getDoneDate() {
+		return doneDate;
+	}
+
+	public void setDoneDate(LocalDateTime doneDate) {
+		this.doneDate = doneDate;
+	}
+
+	public Long getTimeToDeadline() {
+		return timeToDeadline;
+	}
+
+	public void setTimeToDeadline(Long timeToDeadline) {
+		this.timeToDeadline = timeToDeadline;
 	}
 }

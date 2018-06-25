@@ -84,7 +84,6 @@ public class TaskListController {
 			 return "add2";			 
 		 } else {
 			tasklist.setCreationDate(LocalDateTime.now());
-			tasklist.setIsDeleted(false);
 			tasklist.setIsDone(false);
 			takslistservice.saveTask(tasklist);			 
 			return "redirect:/"; 
@@ -98,7 +97,8 @@ public class TaskListController {
 		} else{
 			model.addAttribute("isEmpty", false);
 		}
-		model.addAttribute("tasklist",takslistservice.findAll());
+		customdateserviceimpl.checkDeadline();
+		model.addAttribute("tasklist",takslistservice.findAllByOrderByPriority());
 		model.addAttribute("dueDates",customdateserviceimpl.getAllDueDates());
 		//TODO: pobrac wszystkie taski, zrobic tablice / liste ktora bedzie miala tylko czas miedzy due date a currentDate, i boolean czy data juz byla czy nie
 

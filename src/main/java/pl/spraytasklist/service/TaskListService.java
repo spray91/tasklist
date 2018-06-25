@@ -1,12 +1,8 @@
 package pl.spraytasklist.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 
@@ -21,6 +17,10 @@ public interface TaskListService {
 	void saveTask(TaskList tasklist);
 	
 	List<TaskList> findAll();
+	
+	List<TaskList> findAllByOrderByDueDate();
+	
+	List<TaskList> findAllByOrderByPriority();
 	
 	List<TaskList> findByDueDate(LocalDateTime dueDate);
 	

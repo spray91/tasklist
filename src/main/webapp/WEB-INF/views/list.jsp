@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="owntags" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
@@ -46,16 +47,16 @@
 		                	<div class="panel-heading">
 		                		<h4>
 		                			<c:out value="${objectArr.title}" />
-		                			<a href="<c:url value='/delete/${objectArr.id}' />" class="btn btn-danger btn-xs pull-right" role="button">Delete</a>
+		                			<div class="btn-group pull-right">
+		                				<a href="<c:url value='/details/${objectArr.id}' />" class="btn btn-success btn-xs" role="button">Details</a>
+		                				<a href="<c:url value='/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
+		                			</div>
 		                		</h4>
 		                	</div>
 		                    <div class="panel-body">
-		                    	<h4>Id: <c:out value="${objectArr.id}" /></h4><br />
-		                        <h4>Due date: <c:out value="${dueDates[loop.index]}" /></h4><br />
-		                        <h4>Description: <c:out value="${objectArr.description}" /></h4><br />
-		                        <h4>Category: <c:out value="${objectArr.category}" /></h4><br />
-		                        <h4>Priority: <c:out value="${objectArr.priority}" /></h4><br />
-		                        <h4>Creation Date: <c:out value="${objectArr.creationDate}" /></h4><br />
+		                        <h4>Due date: <c:out value="${dueDates[loop.index]}" /></h4>
+		                        <h4>Priority: <c:out value="${objectArr.priority}" /></h4>
+		                        <h4>ETA: <c:out value="${objectArr.timeToDeadline}" /></h4>
 		                    </div>
 		                </div>
 		            </div>
