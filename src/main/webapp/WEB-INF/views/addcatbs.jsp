@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="owntags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>List of tasks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href='<spring:url value="/static/bootstrap/dist/css/bootstrap.min.css"/>'>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+		
+	<script type="text/javascript" src='<spring:url value="/static/jquery-3.3.1.min.js"/>' ></script>
+	<script type="text/javascript" src='<spring:url value="/static/bootstrap.min.js" />'></script>
+	 
+</head>
+<body>
+<body >
+  <owntags:menu/>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <form:form action="${userActionUrl}" method="post" modelAttribute="Category" >
+         	<fieldset class="form-group">
+              <label for="name">Name</label>
+              <form:input type="text" class="form-control" path="name" id="name" placeholder="Enter new category name"/>
+              <div class="has-error">
+                <form:errors path="name" class="help-inline"/>
+              </div>
+			</fieldset>
+			
+         	<fieldset class="form-group">
+              <label for="description">Description</label>
+              <form:textarea rows="5" class="form-control" path="description" id="description" placeholder="Enter new category desciption (optional)"/>
+              <div class="has-error">
+                <form:errors path="description" class="help-inline"/>
+              </div>
+			</fieldset>
+          	
+          	<button type="submit" class="btn">Add category</button>
+        
+		</form:form>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

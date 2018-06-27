@@ -11,4 +11,6 @@ public interface CategoryService {
 	List<Category> findAll();
 	
 	void saveCategory(Category category);
+	
+	Category findByName(String name);
 }

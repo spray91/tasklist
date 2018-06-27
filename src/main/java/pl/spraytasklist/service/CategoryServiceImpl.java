@@ -21,10 +21,14 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 	
 	public void saveCategory(Category category) {
-		dao.saveCategory(category);
+		dao.save(category);
 	}
 	
 	public List<Category> findAll(){
 		return dao.findAll();
+	}
+	
+	public Category findByName(String name) {
+		return dao.findByName(name);
 	}
 }

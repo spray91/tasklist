@@ -1,14 +1,15 @@
 package pl.spraytasklist.service;
 
-
 import pl.spraytasklist.dao.TaskListDao;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
+import java.time.LocalDateTime;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("TaskListservice")
+@Service("TaskListService")
 @Transactional
 public class TaskListServiceImpl implements TaskListService {
 	
@@ -24,6 +25,31 @@ public class TaskListServiceImpl implements TaskListService {
 	}
 	
 	public void saveTask(TaskList tasklist) {
-		dao.saveTask(tasklist);
+		dao.save(tasklist);
+	}
+	
+	public List<TaskList> findAll(){
+		return dao.findAll();
+	}
+	
+	public TaskList findByTitle(String title) {
+		return dao.findByTitle(title);
+	}
+
+	public List<TaskList> findByDueDate(LocalDateTime dueDate) {
+		return dao.findByDueDate(dueDate);
+	}
+	
+	public void removeById(Integer id) {
+		dao.removeById(id);
+	}
+	
+	
+	public List<TaskList> findAllByOrderByDueDate(){
+		return dao.findAllByOrderByDueDate();
+	}
+	
+	public List<TaskList> findAllByOrderByPriority(){
+		return dao.findAllByOrderByPriority();
 	}
 }

@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="category")
@@ -20,10 +22,14 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@NotNull
+	@NotBlank
 	private String name;
 	
+	@Size(min=2, max=200)
 	private String description;
+	    
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+    private List<TaskList> tasklist;
 
     protected Category() {}
     
@@ -32,8 +38,10 @@ public class Category {
     	this.description = description;
     }
     
-    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
-    private List<TaskList> tasklist;
+    @Override
+    public String toString() {
+    	return name;
+    }
     
     public void setName(String name) {
     	this.name = name;
@@ -57,6 +65,10 @@ public class Category {
     
     public List<TaskList> getTaskList() {
     	return this.tasklist;
+    }
+    
+    public Integer getId() {
+    	return this.id;
     }
     
 

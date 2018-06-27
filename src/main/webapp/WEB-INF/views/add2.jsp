@@ -1,69 +1,104 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="owntags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
     response.setCharacterEncoding("UTF-8");
     request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
-    <title>Dodaj wydarzenie</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>List of tasks</title>
+ 
+	<link rel="stylesheet" href='<spring:url value="/static/bootstrap/dist/css/bootstrap.min.css"/>'>	
+	<link href='<spring:url value="/static/time/css/bootstrap-datetimepicker.min.css" />' rel="stylesheet" media="screen">	
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+		
+	<script type="text/javascript" src='<spring:url value="/static/jquery-3.3.1.min.js"/>' ></script>
 
 </head>
 <body>
-<!-- info-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <form:form method="POST" modelAttribute="TaskList" charset='utf-8'>
+<body >
+  <owntags:menu/>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <form:form action="${userActionUrl}" method="post" modelAttribute="TaskList" >
+         	<fieldset class="form-group">
+              <label for="title">Title:</label>
+              <form:input type="text" class="form-control" path="title" id="title" placeholder="Enter new task title"/>
+              <div class="has-error">
+                <form:errors path="title" class="help-inline"/>
+              </div>
+			</fieldset>
+			
+         	<fieldset class="form-group">
+              <label for="description">Description</label>
+              <form:textarea rows="5" class="form-control" path="description" id="description" placeholder="Enter new task desciption (optional)"/>
+              <div class="has-error">
+                <form:errors path="description" class="help-inline"/>
+              </div>
+			</fieldset>
 
-                <fieldset class="form-group">
-                    <label for="nazwa">Desc</label>
-                    <form:input type="text" path="description" class="form-control" id="description" placeholder="type desc" />
-                    <div class="has-error">
-                        <form:errors path="description" class="help-inline"/>
-                    </div>
-                </fieldset>
-             
-                <fieldset class="form-group">
-                    <div class="form-group">
-                        <label for="dtp_input1">Date *</label>
-                        <div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
-                            <input class="form-control" size="16" type="text" value="1991-11-11">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                        </div>
-                        <form:input type="hidden" id="dtp_input1" path="scheduledDate" />
-                            <%--<form:input type="text" path="dataRozpoczecia" class="form-control" id="scheduledDate" placeholder="yy-mm-dd" />--%>
-                    </div>
-                </fieldset>
+			<fieldset class="form-group">
+				<div class="form-group">
+			      <label for="category">Category</label>
+			      <form:select class="form-control" path="category">
+					<form:options items="${categories}" />
+			      </form:select>
+			    </div>
+			    <div class="has-error">
+                	<form:errors path="category" class="help-inline"/>
+              	</div>
+			</fieldset>
+			
+			<fieldset class="form-group">
+				<div class="form-group">
+			      <label for="priority">Priority</label>
+			      <form:select class="form-control" path="priority">
+					<form:option value="4">4</form:option>
+					<form:option value="3">3</form:option>
+					<form:option value="2">2</form:option>
+					<form:option value="1">1</form:option>
+			      </form:select>
+			    </div>
+			    <div class="has-error">
+                	<form:errors path="priority" class="help-inline"/>
+              	</div>
+			</fieldset>
+			
+			<fieldset class="form-group">
+				<div class="form-group">
+					<label for="datetimepicker1">Due Date</label>
+		        	<div class="input-group date" id="datetimepicker1">
+		            	<form:input type="text" class="form-control" path="dueDate" id="dueDate" placeholder="yyyy-MM-dd HH:mm" />
+		                <span class="input-group-addon ">
+		                	<span class="glyphicon glyphicon-calendar"></span>
+		                </span>
+		            </div>
+		        </div>
+		        <div class="has-error">
+                	<form:errors path="dueDate" class="help-inline"/>
+              	</div>
+			</fieldset>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
-            </form:form>
-            <br/>
-            <p>* = pole wymagane</p>
+          	<button type="submit" class="btn">Submit</button>
+        
+		</form:form>
         </div>
+      </div>
     </div>
-</div>
-
-<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        language:  'pl',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        showMeridian: 1
-    });
-</script>
-<script>$('.opisTextarea').summernote({height: 300});</script>
+    
+   	<script type="text/javascript" src='<spring:url value="/static/bootstrap.min.js" />'></script>
+	<script type="text/javascript" src='<spring:url value="/static/moment/moment.js"/>'></script>
+	<script type="text/javascript" src='<spring:url value="/static/time/js/bootstrap-datetimepicker.js" />'></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#datetimepicker1').datetimepicker();
+        });
+	</script>
+	
 </body>
 </html>

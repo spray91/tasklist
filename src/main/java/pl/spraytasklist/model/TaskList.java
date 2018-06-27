@@ -1,11 +1,14 @@
 package pl.spraytasklist.model;
 
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+//import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,33 +28,51 @@ public class TaskList {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-    @Size(min=3, max=30)
+    @Size(max=200)
 	private String description;
+    
+    @NotNull
+    @Size(min=2, max=50)
+	private String title;
     
     @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 	
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.TIMESTAMP)
-	private Date scheduledDate;
+    //@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime creationDate;
 	
+    //@NotNull
+    //@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime dueDate;
+    
+    //@NotNull
+    @Min(1)
+    @Max(4)
+    private Integer priority;
+    
+    private boolean isDone;
+    
+    private LocalDateTime doneDate;
+    
+    private Long timeToDeadline;
+    
+    
     protected TaskList() {}
     
-    public TaskList(String description, Category category, Date scheduledDate) {
+    public TaskList(String description, Category category, LocalDateTime scheduledDate) {
     	this.description = description;
-    	this.scheduledDate = scheduledDate;
+    	this.creationDate = scheduledDate;
     	this.category = category;
     }
     
-    @Override
+    /*@Override
     public String toString() {
     	return String.format(
     			"Task[ID=%d, Description=%s, category=%s, Scheduled Date=%tD]",
-    			id, description, category, scheduledDate);
-    }
+    			id, description, category, creationDate);
+    }*/
 
 	public Category getCategory() {
 		return category;
@@ -69,11 +90,63 @@ public class TaskList {
 		this.description = description;
 	}
 	
-	public Date getScheduledDate() {
-		return this.scheduledDate;
+	public LocalDateTime getCreationDate() {
+		return this.creationDate;
 	}
 	
-	public void setScheduledDate(Date scheduledDate) {
-		this.scheduledDate = scheduledDate;
+	public void setCreationDate(LocalDateTime scheduledDate) {
+		this.creationDate = scheduledDate;
+	}
+	
+	public LocalDateTime getDueDate() {
+		return this.dueDate;
+	}
+	
+	public void setDueDate(LocalDateTime dueDate) {
+		this.dueDate = dueDate;
+	}
+	
+	public Integer getPriority() {
+		return this.priority;
+	}
+	
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
+
+	public boolean getIsDone() {
+		return isDone;
+	}
+
+	public void setIsDone(boolean isDone) {
+		this.isDone = isDone;
+	}
+	
+	public String getTitle() {
+		return this.title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public Integer getId() {
+		return this.id;
+	}
+
+	public LocalDateTime getDoneDate() {
+		return doneDate;
+	}
+
+	public void setDoneDate(LocalDateTime doneDate) {
+		this.doneDate = doneDate;
+	}
+
+	public Long getTimeToDeadline() {
+		return timeToDeadline;
+	}
+
+	public void setTimeToDeadline(Long timeToDeadline) {
+		this.timeToDeadline = timeToDeadline;
 	}
 }
