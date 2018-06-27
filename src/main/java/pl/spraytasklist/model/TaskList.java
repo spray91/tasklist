@@ -59,7 +59,7 @@ public class TaskList {
     private Long timeToDeadline;
     
     
-    protected TaskList() {}
+    public TaskList() {}
     
     public TaskList(String description, Category category, LocalDateTime scheduledDate) {
     	this.description = description;
@@ -128,6 +128,10 @@ public class TaskList {
 	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	public Integer getId() {

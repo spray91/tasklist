@@ -72,7 +72,7 @@ public class TaskListController {
 	 public String addTask(Model model, TaskList tasklist) {
 		 model.addAttribute("TaskList",tasklist );
 		 model.addAttribute("categories",categoryservice.findAll());
-		 return "add2"; 
+		 return "add"; 
 	 }
 	 
 	 @PostMapping("/add") 
@@ -81,7 +81,7 @@ public class TaskListController {
 			 model.addAttribute("result", result);
 			 model.addAttribute("TaskList",tasklist );
 			 model.addAttribute("categories",categoryservice.findAll());
-			 return "add2";			 
+			 return "add";			 
 		 } else {
 			tasklist.setCreationDate(LocalDateTime.now());
 			tasklist.setIsDone(false);
@@ -114,7 +114,7 @@ public class TaskListController {
 	@GetMapping("/addcat") 
 	 public String addCategory(Model model, Category category) {
 		 model.addAttribute("Category",category );
-		 return "addcatbs"; 
+		 return "addcat"; 
 	 }
 	 
 	 @PostMapping("/addcat") 
@@ -122,7 +122,7 @@ public class TaskListController {
 		 if (result.hasErrors()) {
 			 model.addAttribute("message", "error");
 			 model.addAttribute("result", result);
-			 return "addcatbs";			 
+			 return "addcat";			 
 		 } else {
 			 categoryservice.saveCategory(category);		 
 			 return "redirect:/"; 

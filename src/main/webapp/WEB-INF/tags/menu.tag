@@ -13,6 +13,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value='/add' />">TASK</a></li>
                         <li><a href="<c:url value='/addcat' />">CATEGORY</a></li>
+                        <li><a href="<c:url value='/readCSV' />">READ CSV</a></li>
                     </ul>
                 </li>
             </ul>
@@ -22,5 +23,3 @@
 <br />
 <br />
 <br />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

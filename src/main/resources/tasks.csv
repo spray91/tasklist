@@ -1,8 +1,8 @@
 id,description,title,category,creationDate,dueDate,priority,isDone,doneDate,timeToDeadline
-4,asd,asd,Birthday,2018-06-26T19:59:28,2018-06-29T19:55,4,false,,258915
+4,asd,asd,Birthday,2018-06-26 19:59,2018-06-29 19:55,4,false,,258915
 5,"asdasdasd asd asd asd asd asd
 asd as
 d as
 d as
-d asd",dsadasd,Exam,2018-06-26T19:59:44,2018-07-05T10:45,1,false,,744315
-6,asd,asd,Birthday,2018-06-26T19:59:28,2018-06-29T19:55,4,false,,258915
+d asd",dsadasd,Exam,2018-06-26 19:59,2018-07-05 10:45,1,false,,744315
+6,asd,asd,Birthday,2018-06-26 19:59,2018-06-29 19:55,4,false,,258915

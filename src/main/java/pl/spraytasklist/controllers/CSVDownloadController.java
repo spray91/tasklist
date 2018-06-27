@@ -3,6 +3,8 @@ package pl.spraytasklist.controllers;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
  
@@ -36,20 +38,32 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
 import pl.spraytasklist.model.TaskList;
+import pl.spraytasklist.service.CategoryService;
 import pl.spraytasklist.service.TaskListService;
 import pl.spraytasklist.service.customDateServiceImpl;
-import pl.spraytasklist.utils.CSVReadUtil;
-
 
 @Controller
 public class CSVDownloadController {
 	
 	protected TaskListService takslistservice;
-	
 	@Autowired(required = true)
 	@Qualifier(value = "TaskListService")
 	public void setTaskListService(TaskListService tls) {
 	    this.takslistservice = tls;
+	}
+	
+	protected CategoryService categoryservice;
+	@Autowired(required = true)
+	@Qualifier(value = "CategoryService")
+	public void setCategoryService(CategoryService cs) {
+	    this.categoryservice = cs;
+	}
+	
+	protected customDateServiceImpl customdateserviceimpl;	
+	@Autowired(required = true)
+	@Qualifier(value = "customDateServiceImpl")
+	public void setTaskListService(customDateServiceImpl cdsi) {
+	    this.customdateserviceimpl = cdsi;
 	}
 	
 	/*protected CSVReadUtil csvreadutil;
@@ -90,18 +104,37 @@ public class CSVDownloadController {
         csvWriter.close();
     }
     
-    @RequestMapping(value = "/readCSV")
+
+	@RequestMapping(value = "/readCSV")
     public void readCSV(Model model) throws FileNotFoundException, IOException {
     	
-    	Resource resource = new ClassPathResource("tasks.csv");
+       	Resource resource = new ClassPathResource("tasks.csv");
     	
     	CSVParser csvParser = new CSVParserBuilder().withSeparator(',').withQuoteChar('"').build();
     	
-    	CSVReader reader = new CSVReaderBuilder(new FileReader(resource.getFile())).withCSVParser(csvParser).build();
+    	CSVReader reader = new CSVReaderBuilder(new FileReader(resource.getFile()))
+    			.withSkipLines(1)
+    			.withCSVParser(csvParser)
+    			.build();
+    	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");    
+    	
         String [] nextLine;
-        while ((nextLine = reader.readNext()) != null) {        	
-            System.out.println(nextLine[0] + " - " + nextLine[1] + " - " + nextLine[2]);
-            System.out.println();
+        while ((nextLine = reader.readNext()) != null) {        
+        	TaskList tasklist = new TaskList();
+        	if((Integer.parseInt(nextLine[0])>0))
+        		tasklist.setId(Integer.parseInt(nextLine[0]));
+        	tasklist.setDescription(nextLine[1]);
+        	tasklist.setTitle(nextLine[2]);
+        	tasklist.setCategory(categoryservice.findByName(nextLine[3]));
+        	tasklist.setCreationDate(LocalDateTime.parse(nextLine[4], formatter));
+        	tasklist.setDueDate(LocalDateTime.parse(nextLine[5], formatter));        	
+        	tasklist.setPriority(Integer.parseInt(nextLine[6]));
+        	tasklist.setIsDone(Boolean.parseBoolean(nextLine[7]));
+        	if(tasklist.getIsDone())
+        		tasklist.setDoneDate(LocalDateTime.parse(nextLine[8], formatter));
+        	takslistservice.saveTask(tasklist);
+            System.out.println("Added task: "+tasklist.toString());
         }
     }
 }
