@@ -24,6 +24,7 @@ import pl.spraytasklist.service.customDateServiceImpl;
 
 
 @Controller
+@RequestMapping("/task")
 public class TaskListController {
 	
 	protected TaskListService takslistservice;
@@ -50,24 +51,6 @@ public class TaskListController {
 	    this.customdateserviceimpl = cdsi;
 	}
 	
-	@RequestMapping("/")
-	public String mainPage(Model model, TaskList tasklist) {
-		if(categoryservice.findAll().isEmpty()) {
-			categoryservice.saveCategory(new Category("Birthday","Birthday"));
-			categoryservice.saveCategory(new Category("Exam","Exam"));
-			categoryservice.saveCategory(new Category("Event","Event"));
-		}
-		/*toddate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-		
-		if(takslistservice.findAll().isEmpty()) {
-			model.addAttribute("isEmpty", true);
-		} else{
-			model.addAttribute("isEmpty", false);
-		}
-		model.addAttribute("tasklist",takslistservice.findAll());*/
-		return "main";
-	}
-	
 	@GetMapping("/add") 
 	 public String addTask(Model model, TaskList tasklist) {
 		 model.addAttribute("TaskList",tasklist );
@@ -92,11 +75,11 @@ public class TaskListController {
 	
 	@RequestMapping("/list")
 	public String showList(Model model, TaskList tasklist) {
-		if(takslistservice.findAll().isEmpty()) {
+		if(takslistservice.findAll().isEmpty())
 			model.addAttribute("isEmpty", true);
-		} else{
+		else
 			model.addAttribute("isEmpty", false);
-		}
+		
 		customdateserviceimpl.checkDeadline();
 		model.addAttribute("tasklist",takslistservice.findAllByOrderByPriority());
 		model.addAttribute("dueDates",customdateserviceimpl.getAllDueDates());
@@ -105,57 +88,32 @@ public class TaskListController {
 		return "list";
 	}
 	
-	@RequestMapping("/details")
-	public String showDetails() {
-		//TODO: menu z title i przechodzenie task by task
+	@RequestMapping("/details/{id}")
+	public String showDetails(@PathVariable("id") Integer taskId, Model model) {
+		if(takslistservice.findById(taskId)==null)
+			model.addAttribute("isEmpty", true);
+		else
+			model.addAttribute("isEmpty", false);
+		
+		customdateserviceimpl.checkDeadline();
+		model.addAttribute("task",takslistservice.findById(taskId));
+		
 		return "details";
 	}
 	
-	@GetMapping("/addcat") 
-	 public String addCategory(Model model, Category category) {
-		 model.addAttribute("Category",category );
-		 return "addcat"; 
-	 }
-	 
-	 @PostMapping("/addcat") 
-	 public String handleCategory(@Valid @ModelAttribute("Category") Category category, BindingResult result, Model model) { 
-		 if (result.hasErrors()) {
-			 model.addAttribute("message", "error");
-			 model.addAttribute("result", result);
-			 return "addcat";			 
-		 } else {
-			 categoryservice.saveCategory(category);		 
-			 return "redirect:/"; 
-		 } 
-	 }
-	 
 	 @GetMapping("/delete/{id}") 
 	 public String deleteTask(@PathVariable("id") Integer taskId) {
+		 takslistservice.removeById(taskId);		 
 		 
-		 takslistservice.removeById(taskId);
-		 
-		 return "redirect:/list"; 
+		 return "redirect:/task/list"; 
 	 }
-	
-	/*@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-	    //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	    binder.registerCustomEditor(LocalDateTime.class, new CustomDateEditor(
-	    		formatter, false));
-	}
-	 @InitBinder
-	 protected void initBinder(WebDataBinder binder) {
-	   binder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
-	     @Override
-	     public void setAsText(String text) throws IllegalArgumentException{
-	       setValue(LocalDateTime.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-	     }
-
-	     @Override
-	     public String getAsText() throws IllegalArgumentException {
-	       return LocalDateTimeFormatter.print(LocalDateTime.class, ));
-	     }
-	   });
-	 }*/
+	 
+	 @GetMapping("/done/{id}") 
+	 public String finishTask(@PathVariable("id") Integer taskId) {
+		 TaskList tasklist;
+		 tasklist = takslistservice.findById(taskId);		 
+		 tasklist.setIsDone(true);
+		 takslistservice.saveTask(tasklist);		 
+		 return "redirect:/task/details/"+taskId; 
+	 }
 }

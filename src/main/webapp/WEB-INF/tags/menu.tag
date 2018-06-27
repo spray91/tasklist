@@ -7,12 +7,18 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<c:url value='/list' />">List of tasks</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">List<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    	<li><a href="<c:url value='/task/list' />">TASKS</a></li>
+                        <li><a href="<c:url value='/category/list' />">CATEGORIES</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<c:url value='/add' />">TASK</a></li>
-                        <li><a href="<c:url value='/addcat' />">CATEGORY</a></li>
+                        <li><a href="<c:url value='/task/add' />">TASK</a></li>
+                        <li><a href="<c:url value='/category/add' />">CATEGORY</a></li>
                         <li><a href="<c:url value='/readCSV' />">READ CSV</a></li>
                     </ul>
                 </li>

@@ -23,50 +23,50 @@
 </head>
 <body>
 <owntags:menu/>
-<br />
-<br />
-
 <div class="container">
 
 	<c:choose>
 		<c:when test="${isEmpty == true}">
 			<div class="text-center bestRegion">
-		    	<h2>You don't have tasks on your list.</h2>
+		    	<h3>You don't have tasks on your list.</h3>
 		   	</div>
 		</c:when>
 		<c:when test="${isEmpty == false}"> 
 		    <div class="row">
 		        <div class="text-center bestRegion">
-		            <h2>Your tasks</h2><br />
+		            <h3>Your tasks</h3><br />
 		        </div>
 		        <c:forEach items="${tasklist}" var="objectArr" varStatus="loop">
-		            <div class="col-md-6">
+		            <div class="col-md-6 col-md-offset-3">		            
 		                <div class="panel panel-default">
 		                	<div class="panel-heading">
-		                		<h4>
+		                		<h5>
 		                			<c:out value="${objectArr.title}" />
 		                			<div class="btn-group pull-right">
-		                				<a href="<c:url value='/details/${objectArr.id}' />" class="btn btn-success btn-xs" role="button">Details</a>
-		                				<a href="<c:url value='/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
+		                				<a href="<c:url value='/task/done/${objectArr.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
+		                				<a href="<c:url value='/task/details/${objectArr.id}' />" class="btn btn-info btn-xs" role="button">Details</a>
+		                				<a href="<c:url value='/task/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
 		                			</div>
-		                		</h4>
+		                		</h5>
 		                	</div>
 		                    <div class="panel-body">
-		                        <h4>Due date: <c:out value="${dueDates[loop.index]}" /></h4>
-		                        <h4>Priority: <c:out value="${objectArr.priority}" /></h4>
-		                        <h4>ETA: <c:out value="${objectArr.timeToDeadline}" /></h4>
+		                        <h5>Due date: <c:out value="${dueDates[loop.index]}" /></h5>
+		                        <h5>Priority: <c:out value="${objectArr.priority}" /></h5>
+		                        <h5>ETA: <c:out value="${objectArr.timeToDeadline}" /></h5>
+		                        <h5>Description: <c:out value="${objectArr.description}" /></h5>
 		                    </div>
 		                </div>
 		            </div>
 		        </c:forEach>
 		        
 		    </div>
-		    <div class="col-md-6">
-				<a href="<c:url value='/downloadCSV' />" class="btn btn-primary" role="button">Download CSV</a>
+		    <div class="col-md-6 col-md-offset-3">
+				<center><a href="<c:url value='/downloadCSV' />" class="btn btn-primary" role="button">Download CSV</a></center>
+				<br />
+				<br />
 			</div>
 		 </c:when>
 	</c:choose>
 </div>
-
 </body>
 </html>

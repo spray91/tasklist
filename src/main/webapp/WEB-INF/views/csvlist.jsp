@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
@@ -23,43 +23,35 @@
 </head>
 <body>
 <owntags:menu/>
+<br />
+<br />
+
 <div class="container">
 
-	<c:choose>
-		<c:when test="${isEmpty == true}">
-			<div class="text-center bestRegion">
-		    	<h3>You don't have tasks on your list.</h3>
-		   	</div>
-		</c:when>
-		<c:when test="${isEmpty == false}"> 
 		    <div class="row">
 		        <div class="text-center bestRegion">
-		            <h3>Task Details</h3><br />
+		            <h2>List of tasks added from CSV</h2><br />
 		        </div>
-		            <div class="col-md-6 col-md-offset-3">		            
+		        <c:forEach items="${tasklist}" var="objectArr" varStatus="loop">
+		            <div class="col-md-6 col-md-offset-3">
 		                <div class="panel panel-default">
 		                	<div class="panel-heading">
-		                		<h5>
-		                			<c:out value="${task.title}" />
-		                			<div class="btn-group pull-right">
-		                				<a href="<c:url value='/task/done/${task.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
-		                				<a href="<c:url value='/task/delete/${task.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
-		                			</div>
-		                		</h5>
+		                		<h4>
+		                			<c:out value="${objectArr.title}" />
+		                		</h4>
 		                	</div>
 		                    <div class="panel-body">
-		                        
-		                        <h5>Priority: <c:out value="${task.priority}" /></h5>
-		                        <h5>ETA: <c:out value="${task.timeToDeadline}" /></h5>
-		                        <h5>Description: <c:out value="${task.description}" /></h5>
-		                        <h5>Done: <c:out value="${task.isDone}" /></h5>
+		                    	<h4>ID: <c:out value="${objectArr.id}" /></h4>
+		                    	<h4>Description: <c:out value="${objectArr.description}" /></h4>
+		                        <h4>Due date: <c:out value="${objectArr.dueDate}" /></h4>
+		                        <h4>Priority: <c:out value="${objectArr.priority}" /></h4>
 		                    </div>
 		                </div>
 		            </div>
+		        </c:forEach>
 		        
 		    </div>
-		 </c:when>
-	</c:choose>
 </div>
+
 </body>
 </html>

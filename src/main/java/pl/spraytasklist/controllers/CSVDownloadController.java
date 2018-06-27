@@ -12,23 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.supercsv.cellprocessor.Optional;
-import org.supercsv.cellprocessor.ParseBool;
-import org.supercsv.cellprocessor.ParseDate;
-import org.supercsv.cellprocessor.ParseInt;
-import org.supercsv.cellprocessor.ParseLong;
-import org.supercsv.cellprocessor.constraint.NotNull;
-import org.supercsv.cellprocessor.constraint.StrMinMax;
-import org.supercsv.cellprocessor.ift.CellProcessor;
-import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.CsvBeanWriter;
-import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
@@ -106,7 +95,7 @@ public class CSVDownloadController {
     
 
 	@RequestMapping(value = "/readCSV")
-    public void readCSV(Model model) throws FileNotFoundException, IOException {
+    public String readCSV(Model model) throws FileNotFoundException, IOException {
     	
        	Resource resource = new ClassPathResource("tasks.csv");
     	
@@ -118,6 +107,9 @@ public class CSVDownloadController {
     			.build();
     	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");    
+    	
+    	List<TaskList> taskListToModel = new ArrayList<TaskList>();
+    	
     	
         String [] nextLine;
         while ((nextLine = reader.readNext()) != null) {        
@@ -135,6 +127,11 @@ public class CSVDownloadController {
         		tasklist.setDoneDate(LocalDateTime.parse(nextLine[8], formatter));
         	takslistservice.saveTask(tasklist);
             System.out.println("Added task: "+tasklist.toString());
+            taskListToModel.add(tasklist);
         }
+        
+        model.addAttribute("tasklist",taskListToModel);
+        
+        return "csvlist";
     }
 }
