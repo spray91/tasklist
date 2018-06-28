@@ -52,4 +52,8 @@ public class TaskListServiceImpl implements TaskListService {
 	public List<TaskList> findAllByOrderByPriority(){
 		return dao.findAllByOrderByPriority();
 	}
+	
+	public boolean existsById(int id) {
+		return dao.existsById(id);
+	}
 }

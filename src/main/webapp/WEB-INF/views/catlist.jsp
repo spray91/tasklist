@@ -40,15 +40,14 @@
 		            <div class="col-md-6 col-md-offset-3">
 		                <div class="panel panel-default">
 		                	<div class="panel-heading">
-		                		<h5>
-		                			<c:out value="${objectArr.name}" />
+		                			<b><c:out value="${objectArr.name}" /></b>
 		                			<div class="btn-group pull-right">
 		                				<a href="<c:url value='/category/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
 		                			</div>
-		                		</h5>
+
 		                	</div>
 		                    <div class="panel-body">
-		                        <h5><c:out value="${objectArr.description}" /></h5>
+		                        <span style="white-space:pre"><c:out value="${objectArr.description}" /></span>
 		                    </div>
 		                </div>
 		            </div>

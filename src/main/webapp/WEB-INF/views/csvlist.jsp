@@ -36,15 +36,13 @@
 		            <div class="col-md-6 col-md-offset-3">
 		                <div class="panel panel-default">
 		                	<div class="panel-heading">
-		                		<h4>
-		                			<c:out value="${objectArr.title}" />
-		                		</h4>
+		                			<b><c:out value="${objectArr.title}" /></b>
 		                	</div>
 		                    <div class="panel-body">
-		                    	<h4>ID: <c:out value="${objectArr.id}" /></h4>
-		                    	<h4>Description: <c:out value="${objectArr.description}" /></h4>
-		                        <h4>Due date: <c:out value="${objectArr.dueDate}" /></h4>
-		                        <h4>Priority: <c:out value="${objectArr.priority}" /></h4>
+		                    	<b>ID:</b> <c:out value="${objectArr.id}" /><br />
+		                    	<span style="white-space:pre"><b>Description:</b> <c:out value="${objectArr.description}" /></span><br />
+		                        <b>Due date:</b> <c:out value="${objectArr.dueDate}" /><br />
+		                        <b>Priority:</b> <c:out value="${objectArr.priority}" />
 		                    </div>
 		                </div>
 		            </div>

@@ -61,15 +61,13 @@ public class CategoryController {
 			 return "addcat";			 
 		 } else {
 			 categoryservice.saveCategory(category);		 
-			 return "redirect:/"; 
+			 return "redirect:/category/list"; 
 		 } 
 	 }
 	 
 	 @GetMapping("/delete/{id}") 
 	 public String deleteCategory(@PathVariable("id") Integer catId) {
-		 
-		 //takslistservice.removeById(taskId);
-		 
-		 return "redirect:/list"; 
+		 categoryservice.removeById(catId);
+		 return "redirect:/category/list"; 
 	 }
 }

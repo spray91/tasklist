@@ -4,6 +4,8 @@ package pl.spraytasklist.dao;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import pl.spraytasklist.model.Category;
 
 
@@ -16,5 +18,6 @@ public interface CategoryDao extends CrudRepository<Category, Integer> {
 	
 	Category findByName(String name);
 	
-	//void saveCategory(Category category);
+	@Transactional
+    void removeById(Integer id);
 }

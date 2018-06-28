@@ -26,4 +26,6 @@ public interface TaskListService {
 	
 	@Transactional
     void removeById(Integer id);
+	
+	boolean existsById(int id);
 }

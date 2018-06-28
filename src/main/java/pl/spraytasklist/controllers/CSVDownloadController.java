@@ -34,11 +34,11 @@ import pl.spraytasklist.service.customDateServiceImpl;
 @Controller
 public class CSVDownloadController {
 	
-	protected TaskListService takslistservice;
+	protected TaskListService taksklistservice;
 	@Autowired(required = true)
 	@Qualifier(value = "TaskListService")
 	public void setTaskListService(TaskListService tls) {
-	    this.takslistservice = tls;
+	    this.taksklistservice = tls;
 	}
 	
 	protected CategoryService categoryservice;
@@ -55,14 +55,6 @@ public class CSVDownloadController {
 	    this.customdateserviceimpl = cdsi;
 	}
 	
-	/*protected CSVReadUtil csvreadutil;
-	
-	@Autowired
-	@Qualifier(value = "CSVReadUtil")
-	public void setCSVReadUtil(CSVReadUtil csvutil) {
-	    this.csvreadutil = csvutil;
-	}*/
-	
 	
     @RequestMapping(value = "/downloadCSV")
     public void downloadCSV(HttpServletResponse response) throws IOException {
@@ -76,7 +68,7 @@ public class CSVDownloadController {
                 csvFileName);
         response.setHeader(headerKey, headerValue);
  
-        List<TaskList> tasklist = takslistservice.findAll();
+        List<TaskList> tasklist = taksklistservice.findAll();
  
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
                 CsvPreference.STANDARD_PREFERENCE);
@@ -112,22 +104,23 @@ public class CSVDownloadController {
     	
     	
         String [] nextLine;
-        while ((nextLine = reader.readNext()) != null) {        
-        	TaskList tasklist = new TaskList();
-        	if((Integer.parseInt(nextLine[0])>0))
-        		tasklist.setId(Integer.parseInt(nextLine[0]));
-        	tasklist.setDescription(nextLine[1]);
-        	tasklist.setTitle(nextLine[2]);
-        	tasklist.setCategory(categoryservice.findByName(nextLine[3]));
-        	tasklist.setCreationDate(LocalDateTime.parse(nextLine[4], formatter));
-        	tasklist.setDueDate(LocalDateTime.parse(nextLine[5], formatter));        	
-        	tasklist.setPriority(Integer.parseInt(nextLine[6]));
-        	tasklist.setIsDone(Boolean.parseBoolean(nextLine[7]));
-        	if(tasklist.getIsDone())
-        		tasklist.setDoneDate(LocalDateTime.parse(nextLine[8], formatter));
-        	takslistservice.saveTask(tasklist);
-            System.out.println("Added task: "+tasklist.toString());
-            taskListToModel.add(tasklist);
+        while ((nextLine = reader.readNext()) != null) {       
+        	
+	        	TaskList tasklist = new TaskList();
+	        	if((Integer.parseInt(nextLine[0])>0))
+	        		tasklist.setId(Integer.parseInt(nextLine[0]));
+	        	tasklist.setDescription(nextLine[1]);
+	        	tasklist.setTitle(nextLine[2]);
+	        	tasklist.setCategory(categoryservice.findByName(nextLine[3]));
+	        	tasklist.setCreationDate(LocalDateTime.parse(nextLine[4], formatter));
+	        	tasklist.setDueDate(LocalDateTime.parse(nextLine[5], formatter));        	
+	        	tasklist.setPriority(Integer.parseInt(nextLine[6]));
+	        	tasklist.setIsDone(Boolean.parseBoolean(nextLine[7]));
+	        	if(tasklist.getIsDone())
+	        		tasklist.setDoneDate(LocalDateTime.parse(nextLine[8], formatter));
+	        	taksklistservice.saveTask(tasklist);
+	            System.out.println("Added task: "+tasklist.toString());
+	            taskListToModel.add(tasklist);        	
         }
         
         model.addAttribute("tasklist",taskListToModel);

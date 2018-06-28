@@ -75,7 +75,7 @@
 				<div class="form-group">
 					<label for="datetimepicker1">Due Date</label>
 		        	<div class="input-group date" id="datetimepicker1">
-		            	<form:input type="text" class="form-control" path="dueDate" id="dueDate" placeholder="yyyy-MM-dd HH:mm" />
+		            	<form:input type="text" class="form-control" path="dueDate" id="dueDate" placeholder="yyyy-MM-dd HH:mm" value="${dueDateValue}"/>
 		                <span class="input-group-addon ">
 		                	<span class="glyphicon glyphicon-calendar"></span>
 		                </span>

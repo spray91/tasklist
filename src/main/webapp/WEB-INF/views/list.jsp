@@ -40,20 +40,19 @@
 		            <div class="col-md-6 col-md-offset-3">		            
 		                <div class="panel panel-default">
 		                	<div class="panel-heading">
-		                		<h5>
-		                			<c:out value="${objectArr.title}" />
+		                			<b><c:out value="${objectArr.title}" /></b>
 		                			<div class="btn-group pull-right">
 		                				<a href="<c:url value='/task/done/${objectArr.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
 		                				<a href="<c:url value='/task/details/${objectArr.id}' />" class="btn btn-info btn-xs" role="button">Details</a>
-		                				<a href="<c:url value='/task/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
+		                				<a href="<c:url value='/task/edit/${objectArr.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
+		                				<a href="<c:url value='/task/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>		                				
 		                			</div>
-		                		</h5>
 		                	</div>
 		                    <div class="panel-body">
-		                        <h5>Due date: <c:out value="${dueDates[loop.index]}" /></h5>
-		                        <h5>Priority: <c:out value="${objectArr.priority}" /></h5>
-		                        <h5>ETA: <c:out value="${objectArr.timeToDeadline}" /></h5>
-		                        <h5>Description: <c:out value="${objectArr.description}" /></h5>
+		                        <b>Due date:</b> <c:out value="${dueDates[loop.index]}" /><br />
+		                        <b>Priority:</b> <c:out value="${objectArr.priority}" /><br />
+		                        <b>ETA:</b> <c:out value="${objectArr.timeToDeadline}" /><br />
+		                        <b>Description:</b> <span style="white-space:pre"><c:out value="${objectArr.description}" /></span>
 		                    </div>
 		                </div>
 		            </div>

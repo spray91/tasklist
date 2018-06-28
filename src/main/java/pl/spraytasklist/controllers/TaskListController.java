@@ -69,7 +69,7 @@ public class TaskListController {
 			tasklist.setCreationDate(LocalDateTime.now());
 			tasklist.setIsDone(false);
 			takslistservice.saveTask(tasklist);			 
-			return "redirect:/"; 
+			return "redirect:/task/list"; 
 		 } 
 	 }
 	
@@ -97,6 +97,8 @@ public class TaskListController {
 		
 		customdateserviceimpl.checkDeadline();
 		model.addAttribute("task",takslistservice.findById(taskId));
+		model.addAttribute("nextRecord",customdateserviceimpl.nextRecord(taskId));
+		model.addAttribute("previousRecord",customdateserviceimpl.previousRecord(taskId));
 		
 		return "details";
 	}
@@ -115,5 +117,36 @@ public class TaskListController {
 		 tasklist.setIsDone(true);
 		 takslistservice.saveTask(tasklist);		 
 		 return "redirect:/task/details/"+taskId; 
+	 }
+	 
+	 @GetMapping("/edit/{id}") 
+	 public String editTask(@PathVariable("id") Integer taskId, Model model) {
+		 if(!takslistservice.existsById(taskId)) {
+			 model.addAttribute("id", taskId);
+			 return "editerror";
+		 } else {
+			 model.addAttribute("TaskList",takslistservice.findById(taskId));
+			 model.addAttribute("categories",categoryservice.findAll());
+			 model.addAttribute("dueDateValue", customdateserviceimpl.convertDate(taskId));
+			 return "edit"; 
+		 }
+	 }
+	 
+	 @PostMapping("/edit/{id}") 
+	 public String postEditTask(@Valid @ModelAttribute("TaskList") TaskList tasklist, 
+			 					@PathVariable("id") Integer taskId, 
+			 					BindingResult result, 
+			 					Model model) { 
+		 
+		 if (result.hasErrors()) {
+			 model.addAttribute("result", result);
+			 model.addAttribute("TaskList", tasklist);
+			 model.addAttribute("categories",categoryservice.findAll());
+			 model.addAttribute("dueDateValue", customdateserviceimpl.convertDate(taskId));
+			 return "edit";			 
+		 } else {
+			takslistservice.saveTask(tasklist);			 
+			return "redirect:/task/list"; 
+		 } 
 	 }
 }

@@ -31,4 +31,8 @@ public class CategoryServiceImpl implements CategoryService{
 	public Category findByName(String name) {
 		return dao.findByName(name);
 	}
+	
+	public void removeById(Integer id) {
+		dao.removeById(id);
+	}
 }

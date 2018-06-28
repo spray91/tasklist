@@ -28,7 +28,7 @@
 	<c:choose>
 		<c:when test="${isEmpty == true}">
 			<div class="text-center bestRegion">
-		    	<h3>You don't have tasks on your list.</h3>
+		    	<h3>There isn't task with ID equals to ${task.id}</h3>
 		   	</div>
 		</c:when>
 		<c:when test="${isEmpty == false}"> 
@@ -39,25 +39,33 @@
 		            <div class="col-md-6 col-md-offset-3">		            
 		                <div class="panel panel-default">
 		                	<div class="panel-heading">
-		                		<h5>
-		                			<c:out value="${task.title}" />
+		                			<b><c:out value="${task.title}" /></b>
 		                			<div class="btn-group pull-right">
 		                				<a href="<c:url value='/task/done/${task.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
+		                				<a href="<c:url value='/task/edit/${task.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
 		                				<a href="<c:url value='/task/delete/${task.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
 		                			</div>
-		                		</h5>
 		                	</div>
 		                    <div class="panel-body">
-		                        
-		                        <h5>Priority: <c:out value="${task.priority}" /></h5>
-		                        <h5>ETA: <c:out value="${task.timeToDeadline}" /></h5>
-		                        <h5>Description: <c:out value="${task.description}" /></h5>
-		                        <h5>Done: <c:out value="${task.isDone}" /></h5>
+		                        <b>ID: </b><c:out value="${task.id}" /><br />
+		                        <b>Priority:</b> <c:out value="${task.priority}" /><br />
+		                        <b>ETA:</b> <c:out value="${task.timeToDeadline}" /><br />
+		                        <b>Description:</b> <span style="white-space:pre"><c:out value="${task.description}" /></span><br />
+		                        <b>Done:</b> <c:out value="${task.isDone}" /><br />
+		                        <b>Dude Date:</b> <c:out value="${task.dueDate}" />
 		                    </div>
 		                </div>
 		            </div>
-		        
+		        <div class="col-md-6 col-md-offset-3">
+			        <c:if test="${not empty nextRecord}">
+						<a href="<c:url value='/task/details/${nextRecord}' />" class="btn btn-primary pull-right" role="button">Next record</a>
+					</c:if>
+					<c:if test="${not empty previousRecord}">
+						<a href="<c:url value='/task/details/${previousRecord}' />" class="btn btn-primary pull-left" role="button">Previous record</a>
+					</c:if>
+				</div>
 		    </div>
+		    <br />
 		 </c:when>
 	</c:choose>
 </div>

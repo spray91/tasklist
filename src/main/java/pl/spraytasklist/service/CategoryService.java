@@ -2,6 +2,8 @@ package pl.spraytasklist.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import pl.spraytasklist.model.Category;
 
 public interface CategoryService {
@@ -13,4 +15,7 @@ public interface CategoryService {
 	void saveCategory(Category category);
 	
 	Category findByName(String name);
+	
+	@Transactional
+    void removeById(Integer id);
 }
