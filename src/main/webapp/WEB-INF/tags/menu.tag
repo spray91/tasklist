@@ -10,7 +10,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">List<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                    	<li><a href="<c:url value='/task/list' />">TASKS</a></li>
+                    	<li><a href="<c:url value='/task/donelist' />">COMPLETED TASKS</a></li>
+                    	<li><a href="<c:url value='/task/todolist' />">TO DO TASKS</a></li>
                         <li><a href="<c:url value='/category/list' />">CATEGORIES</a></li>
                     </ul>
                 </li>

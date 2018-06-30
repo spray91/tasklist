@@ -1,5 +1,6 @@
 package pl.spraytasklist.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,8 +13,6 @@ public interface TaskListService {
 	
 	TaskList findById(int id);
 	
-	TaskList findByTitle(String title);
-	
 	void saveTask(TaskList tasklist);
 	
 	List<TaskList> findAll();
@@ -24,8 +23,18 @@ public interface TaskListService {
 	
 	List<TaskList> findByDueDate(LocalDateTime dueDate);
 	
+	List<TaskList> findAllByIsDone(boolean idDone);
+
+	List<TaskList> findAllByIsDoneOrderByDueDate(boolean idDone);
+	
+	List<TaskList> findAllByIsDoneOrderByPriority(boolean idDone);
+	
+	boolean isDone(int id);
+	
 	@Transactional
     void removeById(Integer id);
 	
 	boolean existsById(int id);
+	
+	List<TaskList> findAllByTimeToDeadlineLessThanAndIsDoneOrderByTimeToDeadline();
 }

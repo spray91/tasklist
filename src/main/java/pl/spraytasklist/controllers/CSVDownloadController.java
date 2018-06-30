@@ -73,8 +73,8 @@ public class CSVDownloadController {
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
                 CsvPreference.STANDARD_PREFERENCE);
  
-        String[] header = { "id", "description", "title", "category", "creationDate",
-                "dueDate", "priority", "isDone", "doneDate", "timeToDeadline"};
+        String[] header = {"description", "title", "category", "creationDate",
+                "dueDate", "priority", "isDone", "doneDate"};
  
         csvWriter.writeHeader(header);
  
@@ -107,17 +107,17 @@ public class CSVDownloadController {
         while ((nextLine = reader.readNext()) != null) {       
         	
 	        	TaskList tasklist = new TaskList();
-	        	if((Integer.parseInt(nextLine[0])>0))
-	        		tasklist.setId(Integer.parseInt(nextLine[0]));
-	        	tasklist.setDescription(nextLine[1]);
-	        	tasklist.setTitle(nextLine[2]);
-	        	tasklist.setCategory(categoryservice.findByName(nextLine[3]));
-	        	tasklist.setCreationDate(LocalDateTime.parse(nextLine[4], formatter));
-	        	tasklist.setDueDate(LocalDateTime.parse(nextLine[5], formatter));        	
-	        	tasklist.setPriority(Integer.parseInt(nextLine[6]));
-	        	tasklist.setIsDone(Boolean.parseBoolean(nextLine[7]));
-	        	if(tasklist.getIsDone())
-	        		tasklist.setDoneDate(LocalDateTime.parse(nextLine[8], formatter));
+	        	/*if((Integer.parseInt(nextLine[0])>0))
+	        		tasklist.setId(Integer.parseInt(nextLine[0]));*/
+	        	tasklist.setDescription(nextLine[0]);
+	        	tasklist.setTitle(nextLine[1]);
+	        	tasklist.setCategory(categoryservice.findByName(nextLine[2]));
+	        	tasklist.setCreationDate(LocalDateTime.parse(nextLine[3], formatter));
+	        	tasklist.setDueDate(LocalDateTime.parse(nextLine[4], formatter));        	
+	        	tasklist.setPriority(Integer.parseInt(nextLine[5]));
+	        	tasklist.setIsDone(Boolean.parseBoolean(nextLine[6]));
+	        	if(Boolean.parseBoolean(nextLine[6]))
+	        		tasklist.setDoneDate(LocalDateTime.parse(nextLine[7], formatter));
 	        	taksklistservice.saveTask(tasklist);
 	            System.out.println("Added task: "+tasklist.toString());
 	            taskListToModel.add(tasklist);        	

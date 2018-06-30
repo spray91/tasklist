@@ -20,6 +20,7 @@ import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 import pl.spraytasklist.service.CategoryService;
 import pl.spraytasklist.service.TaskListService;
+import pl.spraytasklist.service.TaskListServiceImpl;
 import pl.spraytasklist.service.customDateServiceImpl;
 
 
@@ -73,7 +74,7 @@ public class TaskListController {
 		 } 
 	 }
 	
-	@RequestMapping("/list")
+	@RequestMapping("/donelist")
 	public String showList(Model model, TaskList tasklist) {
 		if(takslistservice.findAll().isEmpty())
 			model.addAttribute("isEmpty", true);
@@ -81,9 +82,9 @@ public class TaskListController {
 			model.addAttribute("isEmpty", false);
 		
 		customdateserviceimpl.checkDeadline();
-		model.addAttribute("tasklist",takslistservice.findAllByOrderByPriority());
-		model.addAttribute("dueDates",customdateserviceimpl.getAllDueDates());
-		//TODO: pobrac wszystkie taski, zrobic tablice / liste ktora bedzie miala tylko czas miedzy due date a currentDate, i boolean czy data juz byla czy nie
+		model.addAttribute("doneList",takslistservice.findAllByIsDone(true));
+		model.addAttribute("doneListByDueDate",takslistservice.findAllByIsDoneOrderByDueDate(true));
+		model.addAttribute("doneListByPriority",takslistservice.findAllByIsDoneOrderByPriority(true));
 
 		return "list";
 	}
@@ -105,23 +106,33 @@ public class TaskListController {
 	
 	 @GetMapping("/delete/{id}") 
 	 public String deleteTask(@PathVariable("id") Integer taskId) {
-		 takslistservice.removeById(taskId);		 
+		 if(takslistservice.isDone(taskId)) {
+			 takslistservice.removeById(taskId);
+			 return "redirect:/";
+		 } else {
+			 takslistservice.removeById(taskId);		
+		 }
 		 
-		 return "redirect:/task/list"; 
+		 return "redirect:/task/todolist"; 
 	 }
 	 
 	 @GetMapping("/done/{id}") 
-	 public String finishTask(@PathVariable("id") Integer taskId) {
-		 TaskList tasklist;
-		 tasklist = takslistservice.findById(taskId);		 
-		 tasklist.setIsDone(true);
-		 takslistservice.saveTask(tasklist);		 
-		 return "redirect:/task/details/"+taskId; 
+	 public String finishTask(@PathVariable("id") Integer taskId, Model model) {
+		 if(takslistservice.isDone(taskId)) {
+			 model.addAttribute("id", taskId);
+			 return "editerror";
+		 } else {
+			 TaskList tasklist;
+			 tasklist = takslistservice.findById(taskId);		 
+			 tasklist.setIsDone(true);
+			 takslistservice.saveTask(tasklist);		 
+			 return "redirect:/task/details/"+taskId; 
+		 }
 	 }
 	 
 	 @GetMapping("/edit/{id}") 
 	 public String editTask(@PathVariable("id") Integer taskId, Model model) {
-		 if(!takslistservice.existsById(taskId)) {
+		 if(!takslistservice.existsById(taskId) || takslistservice.isDone(taskId)) {
 			 model.addAttribute("id", taskId);
 			 return "editerror";
 		 } else {
@@ -146,7 +157,22 @@ public class TaskListController {
 			 return "edit";			 
 		 } else {
 			takslistservice.saveTask(tasklist);			 
-			return "redirect:/task/list"; 
+			return "redirect:/task/details/"+taskId; 
 		 } 
 	 }
+	 
+		@RequestMapping("/todolist")
+		public String showToDoList(Model model, TaskList tasklist) {
+			if(takslistservice.findAll().isEmpty())
+				model.addAttribute("isEmpty", true);
+			else
+				model.addAttribute("isEmpty", false);
+			
+			customdateserviceimpl.checkDeadline();
+			model.addAttribute("doneList",takslistservice.findAllByIsDone(false));
+			model.addAttribute("doneListByDueDate",takslistservice.findAllByIsDoneOrderByDueDate(false));
+			model.addAttribute("doneListByPriority",takslistservice.findAllByIsDoneOrderByPriority(false));
+
+			return "todolist";
+		}
 }

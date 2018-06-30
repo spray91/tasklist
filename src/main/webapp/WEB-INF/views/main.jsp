@@ -27,11 +27,54 @@
 	<br />	
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Spray Task list</h1>      
+			<h1>Spray Task List</h1>      
 			<p>This is my first project in Spring framework. Please be forgiving.</p>
+			<p>It was created for one of my school subject "Object-Oriented Languages"</p>
 		</div>
-	<p>This is some text.</p>      
-	<p>This is another text.</p>      
+
+		
+		  	<div class="row">
+		        <div class="text-center">
+		            <h3>Your tasks for next 7 days:</h3><br />
+		        </div>
+		        <c:forEach items="${deadline}" var="objectArr" varStatus="loop">
+		            <div class="col-md-6 col-md-offset-3">
+		            	<c:if test = "${objectArr.timeToDeadline <= 0}">
+         					<div class="panel panel-danger">
+      					</c:if>
+      					<c:if test = "${objectArr.timeToDeadline > 0}">
+      						<c:if test = "${objectArr.timeToDeadline < 86400}">
+         						<div class="panel panel-warning">
+         					</c:if>
+         					<c:if test = "${objectArr.timeToDeadline > 86400}">
+         						<div class="panel panel-default">
+         					</c:if>
+      					</c:if>
+		                <!--  <div class="panel panel-default">-->
+		                	<div class="panel-heading">
+		                			<b><c:out value="${objectArr.title}" /></b>
+			                			<div class="btn-group pull-right">
+			                				<a href="<c:url value='/task/done/${objectArr.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
+			                				<a href="<c:url value='/task/details/${objectArr.id}' />" class="btn btn-info btn-xs" role="button">Details</a>
+			                				<a href="<c:url value='/task/edit/${objectArr.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
+			                				<a href="<c:url value='/task/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>		                				
+			                			</div>
+		                	</div>
+		                    <div class="panel-body">
+		                    	<b>ID:</b> <c:out value="${objectArr.id}" /><br />
+		                    	<span style="white-space:pre"><b>Description:</b> <c:out value="${objectArr.description}" /></span><br />
+		                        <b>Due date:</b> <c:out value="${objectArr.dueDate}" /><br />
+		                        <b>Priority:</b> <c:out value="${objectArr.priority}" /><br />
+		                        <b>ETA:</b> <c:out value="${objectArr.timeToDeadline}" />
+		                    </div>
+		                </div>
+		            </div>
+		        </c:forEach>
+		        
+		    </div>
+
+
+
 	</div>
 </body>
 </html>

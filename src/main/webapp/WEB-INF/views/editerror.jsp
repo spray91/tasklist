@@ -25,8 +25,8 @@
 <body >
   <owntags:menu/>
     <div class="container">
-      <div class="text-center bestRegion">
-		    	<h3>There is no task with ID equal to ${id}</h3>
+      <div class="text-center">
+		    	<h3>You cannot perform this action. Task id done or not exits.</h3>
 		   	</div>
     </div>
     	

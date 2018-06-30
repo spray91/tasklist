@@ -32,7 +32,7 @@ public class TaskList {
 	private String description;
     
     @NotNull
-    @Size(min=2, max=50)
+    @Size(min=2, max=40)
 	private String title;
     
     @NotNull
@@ -67,12 +67,12 @@ public class TaskList {
     	this.category = category;
     }
     
-    /*@Override
+    @Override
     public String toString() {
     	return String.format(
-    			"Task[ID=%d, Description=%s, category=%s, Scheduled Date=%tD]",
-    			id, description, category, creationDate);
-    }*/
+    			"Task[ID=%d, Description=%s, category=%s, Scheduled Date=%tD, Due Date=%tD], Is Done=%b",
+    			this.id, this.description, this.category, this.creationDate, this.dueDate, this.isDone);
+    }
 
 	public Category getCategory() {
 		return category;

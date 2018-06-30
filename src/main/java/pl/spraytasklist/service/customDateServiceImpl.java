@@ -54,9 +54,10 @@ public class customDateServiceImpl {
 		taskList = dao.findAll();
 		
 		for(TaskList task : taskList){
-			LocalDateTime dueDate = task.getDueDate();
-			LocalDateTime currentTime = LocalDateTime.now();
-            task.setTimeToDeadline( Duration.between(currentTime, dueDate).toSeconds() );
+			if(!task.getIsDone())
+				task.setTimeToDeadline( Duration.between(LocalDateTime.now(), task.getDueDate()).toSeconds() );
+			else
+				task.setTimeToDeadline((long) 0);
 
             tls.saveTask(task);
 		}
@@ -79,12 +80,13 @@ public class customDateServiceImpl {
 		List<TaskList> taskList = new ArrayList<TaskList>();
 		taskList = dao.findAll();
 		boolean prev = false;
-		for(int i=taskList.size()-1 ; i==0 ; i--) {
-			if(prev)
-				return taskList.get(i-1).getId();
-			if(taskList.get(i).getId()==taskId)
-				prev = true; 
-		}
+		for(int i=taskList.size()-1 ; i>=0 ; i--) {
+			TaskList record = taskList.get(i);
+			if(prev) 
+				return record.getId();
+			if(record.getId()==taskId)
+				prev = true;
+		}		
 		return null;
 	}
 }

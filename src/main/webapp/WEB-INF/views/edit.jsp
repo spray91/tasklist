@@ -86,7 +86,7 @@
               	</div>
 			</fieldset>
 
-          	<button type="submit" class="btn">Submit</button>
+          	<button type="submit" class="btn btn-primary">Update Task</button>
         
 		</form:form>
         </div>

@@ -27,13 +27,13 @@
 
 	<c:choose>
 		<c:when test="${isEmpty == true}">
-			<div class="text-center bestRegion">
+			<div class="text-center">
 		    	<h3>You don't have categories.</h3>
 		   	</div>
 		</c:when>
 		<c:when test="${isEmpty == false}"> 
 		    <div class="row">
-		        <div class="text-center bestRegion">
+		        <div class="text-center">
 		            <h3>Your categories</h3><br />
 		        </div>
 		        <c:forEach items="${categories}" var="objectArr" varStatus="loop">

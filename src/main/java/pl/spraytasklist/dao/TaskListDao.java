@@ -1,5 +1,6 @@
 package pl.spraytasklist.dao;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
@@ -18,13 +19,19 @@ public interface TaskListDao extends CrudRepository<TaskList, Integer> {
 	
 	List<TaskList> findAll();
 	
+	List<TaskList> findAllByIsDone(boolean idDone);
+
 	List<TaskList> findAllByOrderByDueDate();
+	
+	List<TaskList> findAllByIsDoneOrderByDueDate(boolean idDone);
 	
 	List<TaskList> findAllByOrderByPriority();
 	
-	List<TaskList> findByDueDate(LocalDateTime dueDate);
+	List<TaskList> findAllByIsDoneOrderByPriority(boolean idDone);
 	
-	TaskList findByTitle(String title);	
+	List<TaskList> findAllByDueDate(LocalDateTime dueDate);
+	
+	List<TaskList> findAllByTimeToDeadlineLessThanAndIsDoneOrderByTimeToDeadline(Long timeToDeadline, boolean isDone);
 	
 	@Transactional
     void removeById(Integer id);

@@ -33,7 +33,7 @@
 		</c:when>
 		<c:when test="${isEmpty == false}"> 
 			<div class="text-center">
-		    	<h3>Completed tasks</h3><br />
+		    	<h3>Tasks To Do</h3><br />
 		    </div>
 		    <br />
 		
@@ -51,8 +51,10 @@
 			                <div class="panel panel-default">
 			                	<div class="panel-heading">
 			                			<b><c:out value="${objectArr.title}" /></b>
-			                			<div class="btn-group pull-right">			                				
-			                				<a href="<c:url value='/task/details/${objectArr.id}' />" class="btn btn-info btn-xs" role="button">Details</a>			                			
+			                			<div class="btn-group pull-right">
+			                				<a href="<c:url value='/task/done/${objectArr.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
+			                				<a href="<c:url value='/task/details/${objectArr.id}' />" class="btn btn-info btn-xs" role="button">Details</a>
+			                				<a href="<c:url value='/task/edit/${objectArr.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
 			                				<a href="<c:url value='/task/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>		                				
 			                			</div>
 			                	</div>
@@ -74,8 +76,10 @@
 			                	<div class="panel-heading">
 			                			<b><c:out value="${objectArr2.title}" /></b>
 			                			<div class="btn-group pull-right">
-			                				<a href="<c:url value='/task/details/${objectArr.id}' />" class="btn btn-info btn-xs" role="button">Details</a>			                			
-			                				<a href="<c:url value='/task/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>			                				
+			                				<a href="<c:url value='/task/done/${objectArr2.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
+			                				<a href="<c:url value='/task/details/${objectArr2.id}' />" class="btn btn-info btn-xs" role="button">Details</a>
+			                				<a href="<c:url value='/task/edit/${objectArr2.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
+			                				<a href="<c:url value='/task/delete/${objectArr2.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>		                				
 			                			</div>
 			                	</div>
 			                    <div class="panel-body">
@@ -97,8 +101,10 @@
 			                	<div class="panel-heading">
 			                			<b><c:out value="${objectArr3.title}" /></b>
 			                			<div class="btn-group pull-right">
-			                				<a href="<c:url value='/task/details/${objectArr.id}' />" class="btn btn-info btn-xs" role="button">Details</a>			                			
-			                				<a href="<c:url value='/task/delete/${objectArr.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>			                				
+			                				<a href="<c:url value='/task/done/${objectArr3.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
+			                				<a href="<c:url value='/task/details/${objectArr3.id}' />" class="btn btn-info btn-xs" role="button">Details</a>
+			                				<a href="<c:url value='/task/edit/${objectArr3.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
+			                				<a href="<c:url value='/task/delete/${objectArr3.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>		                				
 			                			</div>
 			                	</div>
 			                    <div class="panel-body">

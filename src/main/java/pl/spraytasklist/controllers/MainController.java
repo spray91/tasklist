@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import pl.spraytasklist.components.DeadLineComponent;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 import pl.spraytasklist.service.CategoryService;
@@ -26,6 +27,14 @@ import pl.spraytasklist.service.customDateServiceImpl;
 @Controller
 public class MainController {
 	
+	protected TaskListService takslistservice;
+	
+	@Autowired(required = true)
+	@Qualifier(value = "TaskListService")
+	public void setTaskListService(TaskListService tls) {
+	    this.takslistservice = tls;
+	}
+	
 	protected CategoryService categoryservice;
 	
 	@Autowired(required = true)
@@ -34,14 +43,32 @@ public class MainController {
 	    this.categoryservice = cs;
 	}
 	
+	protected customDateServiceImpl customdateserviceimpl;
+	
+	@Autowired(required = true)
+	@Qualifier(value = "customDateServiceImpl")
+	public void setTaskListService(customDateServiceImpl cdsi) {
+	    this.customdateserviceimpl = cdsi;
+	}
+	
+	@Autowired
+	DeadLineComponent dlc;
 	
 	@RequestMapping("/")
-	public String mainPage(Model model, TaskList tasklist) {
+	public String mainPage(Model model) {
 		if(categoryservice.findAll().isEmpty()) {
 			categoryservice.saveCategory(new Category("Birthday","Birthday"));
 			categoryservice.saveCategory(new Category("Exam","Exam"));
 			categoryservice.saveCategory(new Category("Event","Event"));
+			categoryservice.saveCategory(new Category("Category","Category"));
+			categoryservice.saveCategory(new Category("Test","Test"));
 		}
+		
+		System.out.println(dlc.convertToString());
+		
+		customdateserviceimpl.checkDeadline();
+		model.addAttribute("deadline",takslistservice.findAllByTimeToDeadlineLessThanAndIsDoneOrderByTimeToDeadline());
+
 		return "main";
 	}
 }

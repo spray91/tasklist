@@ -27,13 +27,13 @@
 
 	<c:choose>
 		<c:when test="${isEmpty == true}">
-			<div class="text-center bestRegion">
+			<div class="text-center">
 		    	<h3>There isn't task with ID equals to ${task.id}</h3>
 		   	</div>
 		</c:when>
 		<c:when test="${isEmpty == false}"> 
 		    <div class="row">
-		        <div class="text-center bestRegion">
+		        <div class="text-center">
 		            <h3>Task Details</h3><br />
 		        </div>
 		            <div class="col-md-6 col-md-offset-3">		            

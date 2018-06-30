@@ -23,14 +23,11 @@
 </head>
 <body>
 <owntags:menu/>
-<br />
-<br />
-
 <div class="container">
 
 		    <div class="row">
-		        <div class="text-center bestRegion">
-		            <h2>List of tasks added from CSV</h2><br />
+		        <div class="text-center">
+		            <h3>List of tasks added from CSV</h3><br />
 		        </div>
 		        <c:forEach items="${tasklist}" var="objectArr" varStatus="loop">
 		            <div class="col-md-6 col-md-offset-3">

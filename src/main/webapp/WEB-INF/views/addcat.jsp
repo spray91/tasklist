@@ -25,6 +25,9 @@
 <body >
   <owntags:menu/>
     <div class="container">
+	    <div class="text-center">
+			<h3>Provide category details</h3>
+		</div>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <form:form action="${userActionUrl}" method="post" modelAttribute="Category" >
@@ -44,7 +47,7 @@
               </div>
 			</fieldset>
           	
-          	<button type="submit" class="btn">Add category</button>
+          	<button type="submit" class="btn btn-primary">Add category</button>
         
 		</form:form>
         </div>

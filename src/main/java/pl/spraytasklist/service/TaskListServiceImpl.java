@@ -3,6 +3,7 @@ package pl.spraytasklist.service;
 import pl.spraytasklist.dao.TaskListDao;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,8 @@ public class TaskListServiceImpl implements TaskListService {
 		return dao.findAll();
 	}
 	
-	public TaskList findByTitle(String title) {
-		return dao.findByTitle(title);
-	}
-
 	public List<TaskList> findByDueDate(LocalDateTime dueDate) {
-		return dao.findByDueDate(dueDate);
+		return dao.findAllByDueDate(dueDate);
 	}
 	
 	public void removeById(Integer id) {
@@ -55,5 +52,29 @@ public class TaskListServiceImpl implements TaskListService {
 	
 	public boolean existsById(int id) {
 		return dao.existsById(id);
+	}
+	
+	public List<TaskList> findAllByIsDone(boolean idDone){
+		return dao.findAllByIsDone(idDone);
+	}
+	
+	public List<TaskList> findAllByIsDoneOrderByDueDate(boolean idDone){
+		return dao.findAllByIsDoneOrderByDueDate(idDone);
+	}
+	
+	public List<TaskList> findAllByIsDoneOrderByPriority(boolean idDone){
+		return dao.findAllByIsDoneOrderByPriority(idDone);
+	}
+	
+	public boolean isDone(int id) {
+		TaskList tasklist = dao.findById(id);
+		if(tasklist.getIsDone()) 
+			return true;
+		else
+			return false;		
+	}
+	
+	public List<TaskList> findAllByTimeToDeadlineLessThanAndIsDoneOrderByTimeToDeadline(){
+		return dao.findAllByTimeToDeadlineLessThanAndIsDoneOrderByTimeToDeadline((long) 604800, false);
 	}
 }
