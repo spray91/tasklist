@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import pl.spraytasklist.components.DeadLineComponent;
 import pl.spraytasklist.model.Category;
 import pl.spraytasklist.model.TaskList;
 import pl.spraytasklist.service.CategoryService;
@@ -70,7 +71,7 @@ public class TaskListController {
 			tasklist.setCreationDate(LocalDateTime.now());
 			tasklist.setIsDone(false);
 			takslistservice.saveTask(tasklist);			 
-			return "redirect:/task/list"; 
+			return "redirect:/task/todolist"; 
 		 } 
 	 }
 	
@@ -125,6 +126,7 @@ public class TaskListController {
 			 TaskList tasklist;
 			 tasklist = takslistservice.findById(taskId);		 
 			 tasklist.setIsDone(true);
+			 tasklist.setDoneDate(LocalDateTime.now());
 			 takslistservice.saveTask(tasklist);		 
 			 return "redirect:/task/details/"+taskId; 
 		 }

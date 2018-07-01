@@ -61,8 +61,7 @@
 			                    <div class="panel-body">
 			                        <b>Due date:</b> <c:out value="${objectArr.dueDate}" /><br />
 			                        <b>Priority:</b> <c:out value="${objectArr.priority}" /> <br />
-			                        <b>ETA:</b> <c:out value="${objectArr.timeToDeadline}" /><br />
-			                        <b>Description:</b> <span style="white-space:pre"><c:out value="${objectArr.description}" /></span>
+			                        <b>Time to deadline:</b> <c:out value="${objectArr.formatedTimeToDeadLine}" />			                        
 			                    </div>
 			                </div>
 			        </c:forEach>		        
@@ -83,11 +82,9 @@
 			                			</div>
 			                	</div>
 			                    <div class="panel-body">
-			                    	MENU2
-			                        <b>Due date:</b> <c:out value="${objectArr2.dueDate}" /><br />
+			                    	<b>Due date:</b> <c:out value="${objectArr2.dueDate}" /><br />
 			                        <b>Priority:</b> <c:out value="${objectArr2.priority}" /> <br />
-			                        <b>ETA:</b> <c:out value="${objectArr2.timeToDeadline}" /><br />
-			                        <b>Description:</b> <span style="white-space:pre"><c:out value="${objectArr2.description}" /></span>
+			                        <b>Time to deadline:</b> <c:out value="${objectArr2.formatedTimeToDeadLine}" />	
 			                    </div>
 			                </div>
 			        </c:forEach>		        
@@ -108,11 +105,9 @@
 			                			</div>
 			                	</div>
 			                    <div class="panel-body">
-			                    MENU3
-			                        <b>Due date:</b> <c:out value="${objectArr3.dueDate}" /><br />
+			                    	<b>Due date:</b> <c:out value="${objectArr3.dueDate}" /><br />
 			                        <b>Priority:</b> <c:out value="${objectArr3.priority}" /> <br />
-			                        <b>ETA:</b> <c:out value="${objectArr3.timeToDeadline}" /><br />
-			                        <b>Description:</b> <span style="white-space:pre"><c:out value="${objectArr3.description}" /></span>
+			                        <b>Time to deadline:</b> <c:out value="${objectArr3.formatedTimeToDeadLine}" />	
 			                    </div>
 			                </div>
 			        </c:forEach>		        

@@ -60,11 +60,13 @@ public class MainController {
 			categoryservice.saveCategory(new Category("Birthday","Birthday"));
 			categoryservice.saveCategory(new Category("Exam","Exam"));
 			categoryservice.saveCategory(new Category("Event","Event"));
-			categoryservice.saveCategory(new Category("Category","Category"));
-			categoryservice.saveCategory(new Category("Test","Test"));
+			categoryservice.saveCategory(new Category("Zadanie","Rzecz do wykonania"));
 		}
 		
-		System.out.println(dlc.convertToString());
+		if(takslistservice.findAllByTimeToDeadlineLessThanAndIsDoneOrderByTimeToDeadline().isEmpty())
+			model.addAttribute("isEmpty", true);
+		else
+			model.addAttribute("isEmpty", false);
 		
 		customdateserviceimpl.checkDeadline();
 		model.addAttribute("deadline",takslistservice.findAllByTimeToDeadlineLessThanAndIsDoneOrderByTimeToDeadline());

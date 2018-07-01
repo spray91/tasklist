@@ -40,14 +40,10 @@ public class TaskList {
     @JoinColumn(name = "category_id")
     private Category category;
 	
-    //@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime creationDate;
 	
-    //@NotNull
-    //@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime dueDate;
     
-    //@NotNull
     @Min(1)
     @Max(4)
     private Integer priority;
@@ -57,6 +53,8 @@ public class TaskList {
     private LocalDateTime doneDate;
     
     private Long timeToDeadline;
+    
+    private String formatedTimeToDeadLine;
     
     
     public TaskList() {}
@@ -152,5 +150,13 @@ public class TaskList {
 
 	public void setTimeToDeadline(Long timeToDeadline) {
 		this.timeToDeadline = timeToDeadline;
+	}
+
+	public String getFormatedTimeToDeadLine() {
+		return formatedTimeToDeadLine;
+	}
+
+	public void setFormatedTimeToDeadLine(String formatedTimeToDeadLine) {
+		this.formatedTimeToDeadLine = formatedTimeToDeadLine;
 	}
 }

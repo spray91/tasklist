@@ -31,7 +31,13 @@
 			<p>This is my first project in Spring framework. Please be forgiving.</p>
 			<p>It was created for one of my school subject "Object-Oriented Languages"</p>
 		</div>
-
+	<c:choose>
+		<c:when test="${isEmpty == true}">
+			<div class="text-center">
+		    	<h3>You don't have tasks for next 7 ddays.</h3>
+		   	</div>
+		</c:when>
+		<c:when test="${isEmpty == false}"> 
 		
 		  	<div class="row">
 		        <div class="text-center">
@@ -61,11 +67,9 @@
 			                			</div>
 		                	</div>
 		                    <div class="panel-body">
-		                    	<b>ID:</b> <c:out value="${objectArr.id}" /><br />
-		                    	<span style="white-space:pre"><b>Description:</b> <c:out value="${objectArr.description}" /></span><br />
 		                        <b>Due date:</b> <c:out value="${objectArr.dueDate}" /><br />
 		                        <b>Priority:</b> <c:out value="${objectArr.priority}" /><br />
-		                        <b>ETA:</b> <c:out value="${objectArr.timeToDeadline}" />
+		                        <b>Time to deadline:</b> <c:out value="${objectArr.formatedTimeToDeadLine}" />
 		                    </div>
 		                </div>
 		            </div>
@@ -74,7 +78,8 @@
 		    </div>
 
 
-
+		 </c:when>
+	</c:choose>
 	</div>
 </body>
 </html>

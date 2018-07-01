@@ -28,7 +28,7 @@
 	<c:choose>
 		<c:when test="${isEmpty == true}">
 			<div class="text-center">
-		    	<h3>You don't have tasks on your list.</h3>
+		    	<h3>You don't have tasks on your completed list.</h3>
 		   	</div>
 		</c:when>
 		<c:when test="${isEmpty == false}"> 
@@ -59,8 +59,7 @@
 			                    <div class="panel-body">
 			                        <b>Due date:</b> <c:out value="${objectArr.dueDate}" /><br />
 			                        <b>Priority:</b> <c:out value="${objectArr.priority}" /> <br />
-			                        <b>ETA:</b> <c:out value="${objectArr.timeToDeadline}" /><br />
-			                        <b>Description:</b> <span style="white-space:pre"><c:out value="${objectArr.description}" /></span>
+			                        <b>Completed:</b> <c:out value="${objectArr.doneDate}" />
 			                    </div>
 			                </div>
 			        </c:forEach>		        
@@ -79,11 +78,9 @@
 			                			</div>
 			                	</div>
 			                    <div class="panel-body">
-			                    	MENU2
 			                        <b>Due date:</b> <c:out value="${objectArr2.dueDate}" /><br />
 			                        <b>Priority:</b> <c:out value="${objectArr2.priority}" /> <br />
-			                        <b>ETA:</b> <c:out value="${objectArr2.timeToDeadline}" /><br />
-			                        <b>Description:</b> <span style="white-space:pre"><c:out value="${objectArr2.description}" /></span>
+			                        <b>Completed:</b> <c:out value="${objectArr2.doneDate}" />
 			                    </div>
 			                </div>
 			        </c:forEach>		        
@@ -102,11 +99,9 @@
 			                			</div>
 			                	</div>
 			                    <div class="panel-body">
-			                    MENU3
 			                        <b>Due date:</b> <c:out value="${objectArr3.dueDate}" /><br />
 			                        <b>Priority:</b> <c:out value="${objectArr3.priority}" /> <br />
-			                        <b>ETA:</b> <c:out value="${objectArr3.timeToDeadline}" /><br />
-			                        <b>Description:</b> <span style="white-space:pre"><c:out value="${objectArr3.description}" /></span>
+			                        <b>Completed:</b> <c:out value="${objectArr3.doneDate}" />
 			                    </div>
 			                </div>
 			        </c:forEach>		        

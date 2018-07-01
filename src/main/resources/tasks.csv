@@ -1,19 +1,19 @@
-description,title,category,creationDate,dueDate,priority,isDone,doneDate,
-task1,Title 1,Birthday,2018-06-20 15:21,2018-07-02 11:42,1,true,2018-06-29 19:55,2018-06-02 11:42
-task2,Title 2,Exam,2018-06-20 15:22,2018-07-02 11:41,2,true,2018-06-29 19:55,2018-06-02 11:41
-task3,Title 3,Event,2018-06-20 15:23,2018-07-02 11:40,3,false,,2018-06-02 11:40
-task4,Title 4,Category,2018-06-20 15:24,2018-06-02 11:39,4,true,2018-06-29 19:55,2018-06-02 11:39
-task5,Title 5,Test,2018-06-20 15:25,2018-07-02 11:38,4,false,,2018-06-02 11:38
-task6,Title 6,Birthday,2018-06-20 15:26,2018-07-05 11:37,3,false,,2018-06-02 11:37
-task7,Title 7,Exam,2018-06-20 15:27,2018-06-02 11:36,2,true,2018-06-29 19:55,2018-06-02 11:36
-task8,Title 8,Event,2018-06-20 15:28,2018-06-02 11:35,1,true,2018-06-29 19:55,2018-06-02 11:35
-task9,Title 9,Category,2018-06-20 15:29,2018-07-07 11:34,2,false,,2018-06-02 11:34
-task10,Title 10,Test,2018-06-20 15:30,2018-06-02 11:33,3,true,2018-06-29 19:55,2018-06-02 11:33
-task11,Title 11,Birthday,2018-06-20 15:31,2018-07-21 11:32,4,false,,2018-06-02 11:32
-task12,Title 12,Exam,2018-06-20 15:32,2018-06-02 11:31,4,false,,2018-06-02 11:31
-task13,Title 13,Event,2018-06-20 15:33,2018-06-02 11:30,2,true,2018-06-29 19:55,2018-06-02 11:30
-task14,Title 14,Category,2018-06-20 15:34,2018-06-02 11:29,3,true,2018-06-29 19:55,2018-06-02 11:29
-task15,Title 15,Test,2018-06-20 15:35,2018-06-02 11:28,4,false,,2018-06-02 11:28
-task16,Title 16,Birthday,2018-06-20 15:36,2018-06-02 11:27,3,true,2018-06-29 19:55,2018-06-02 11:27
-task17,Title 17,Exam,2018-06-20 15:37,2018-06-02 11:26,1,false,,2018-06-02 11:26
-task18,Title 18,Event,2018-06-20 15:38,2018-06-02 11:25,1,false,,2018-06-02 11:25
+description,title,category,creationDate,dueDate,priority,isDone,doneDate
+"do wymiany:
+- klocki
+- rozrzad",Wizyta u mechanika,Zadanie,2018-06-20 15:21,2018-07-06 11:42,1,false,
+"- olej
+- maslo
+- windows 10
+- laptop",Zakupy,Zadanie,2018-06-10 15:22,2018-07-03 13:20,4,true,2018-06-29 19:55
+"aplikacja w springu
++ hibernate
++ bootstrap",Zaliczenie z obiektowki,Exam,2018-06-20 15:23,2018-07-01 18:10,1,false,
+Sylwia Grzeszczak w Tychach,Koncert,Event,2018-06-20 15:24,2018-07-01 20:30,4,false,
+kupic prezent,Urodziny Oliego,Birthday,2018-06-20 15:25,2018-04-17 13:40,4,false,
+kupic prezent,Urodziny Ani,Birthday,2018-06-20 15:26,2018-09-23 11:37,1,false,
+"Sprawdzic czy jest olej w kosiarce
+Kupic benzyne do kosy",Pokosic ogrodek,Zadanie,2018-06-20 15:27,2018-06-02 11:36,2,true,2018-06-29 19:55
+W koncu isc spac,Wyspac się,Event,2018-06-20 15:28,2018-07-01 23:10,1,false,
+ ,Sprawozdanie z PeiM,Exam,2018-06-20 15:29,2018-07-01 11:34,3,true,2018-07-01 09:34
+pilne!,Zaktualizowac system,Zadanie,2018-06-20 15:28,2018-07-01 02:10,1,false,

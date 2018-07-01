@@ -41,18 +41,27 @@
 		                	<div class="panel-heading">
 		                			<b><c:out value="${task.title}" /></b>
 		                			<div class="btn-group pull-right">
-		                				<a href="<c:url value='/task/done/${task.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
-		                				<a href="<c:url value='/task/edit/${task.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
+		                				<c:if test = "${task.isDone == false}">
+		                					<a href="<c:url value='/task/done/${task.id}' />" class="btn btn-success btn-xs" role="button">Done</a>
+				         					<a href="<c:url value='/task/edit/${task.id}' />" class="btn btn-warning btn-xs" role="button">Edit</a>
+				      					</c:if>		                				
 		                				<a href="<c:url value='/task/delete/${task.id}' />" class="btn btn-danger btn-xs" role="button">Delete</a>
 		                			</div>
 		                	</div>
 		                    <div class="panel-body">
 		                        <b>ID: </b><c:out value="${task.id}" /><br />
 		                        <b>Priority:</b> <c:out value="${task.priority}" /><br />
-		                        <b>ETA:</b> <c:out value="${task.timeToDeadline}" /><br />
+		                        <b>Category:</b> <c:out value="${task.category}" /><br />		                        
 		                        <b>Description:</b> <span style="white-space:pre"><c:out value="${task.description}" /></span><br />
-		                        <b>Done:</b> <c:out value="${task.isDone}" /><br />
-		                        <b>Dude Date:</b> <c:out value="${task.dueDate}" />
+		                        <b>Due Date:</b> <c:out value="${task.dueDate}" /><br />
+		                        <c:if test = "${task.isDone == false}">
+				         			<b>Done:</b> NO<br />
+				         			<b>Time to deadline:</b> <c:out value="${task.formatedTimeToDeadLine}" />
+				      			</c:if>		
+		                        <c:if test = "${task.isDone == true}">
+				         			<b>Done:</b> YES<br />
+				         			<b>Done Date:</b> <c:out value="${task.doneDate}" />
+				      			</c:if>						                      
 		                    </div>
 		                </div>
 		            </div>

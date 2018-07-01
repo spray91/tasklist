@@ -15,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import pl.spraytasklist.components.DeadLineComponent;
 import pl.spraytasklist.converter.IdToCateogryConverter;
 import pl.spraytasklist.converter.StringToLocalDateTimeConverter;
 
@@ -29,6 +31,7 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	StringToLocalDateTimeConverter stringtolocaldatetimeconverter;
+	
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

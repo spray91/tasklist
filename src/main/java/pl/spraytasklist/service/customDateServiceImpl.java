@@ -8,8 +8,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import pl.spraytasklist.components.DeadLineComponent;
 import pl.spraytasklist.dao.TaskListDao;
 import pl.spraytasklist.model.TaskList;
 
@@ -23,7 +25,8 @@ public class customDateServiceImpl {
 	@Autowired
 	private TaskListService tls;
 	
-	
+	@Autowired
+	DeadLineComponent dlc;
 	
 	public List<String> getAllDueDates(){
 		List<TaskList> taskList = new ArrayList<TaskList>();
@@ -58,6 +61,8 @@ public class customDateServiceImpl {
 				task.setTimeToDeadline( Duration.between(LocalDateTime.now(), task.getDueDate()).toSeconds() );
 			else
 				task.setTimeToDeadline((long) 0);
+			
+			task.setFormatedTimeToDeadLine(dlc.convertToString(task.getTimeToDeadline()));
 
             tls.saveTask(task);
 		}
