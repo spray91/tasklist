@@ -34,7 +34,7 @@
 	<c:choose>
 		<c:when test="${isEmpty == true}">
 			<div class="text-center">
-		    	<h3>You don't have tasks for next 7 ddays.</h3>
+		    	<h3>You don't have tasks for next 7 days.</h3>
 		   	</div>
 		</c:when>
 		<c:when test="${isEmpty == false}"> 
